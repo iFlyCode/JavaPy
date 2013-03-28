@@ -19,11 +19,14 @@ public class FileReading {
 	 * @throws FileNotFoundException
 	 */
 	public String readLine(String file, int line) throws FileNotFoundException {
-		ArrayList<String> commText = new ArrayList<String>(1);
+		ArrayList<String> contents = new ArrayList<String>(0);
+
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
-		commText.add(scan.nextLine());
-		return commText.get(line);
+		while (scan.hasNextLine()) {
+			contents.add(scan.nextLine());
+		}
+		return contents.get(line);
 	}
 
 	/**
@@ -40,11 +43,13 @@ public class FileReading {
 	 */
 	public int[] searchFile(String file, String keyword)
 			throws FileNotFoundException {
-		ArrayList<String> contents = new ArrayList<String>(1);
-		ArrayList<Integer> search = new ArrayList<Integer>(1);
+		ArrayList<String> contents = new ArrayList<String>(0);
+		ArrayList<Integer> search = new ArrayList<Integer>(0);
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
-		contents.add(scan.nextLine());
+		while (scan.hasNextLine()) {
+			contents.add(scan.nextLine());
+		}
 		for (int x = 0; x < contents.size(); x++) {
 			String evaluate = contents.get(x);
 			if (evaluate.contains(keyword)) {
@@ -57,5 +62,23 @@ public class FileReading {
 			locations[x] = Integer.getInteger(strings[x]);
 		}
 		return locations;
+	}
+
+	/**
+	 * Reads the file, puts it into an ArrayList, then returns the ArrayList
+	 * 
+	 * @param file
+	 * @return ArrayList with the file inside, Line by Line
+	 * @throws FileNotFoundException
+	 */
+	public ArrayList<String> readFile(String file) throws FileNotFoundException {
+		ArrayList<String> contents = new ArrayList<String>(0);
+
+		FileReader configRead = new FileReader(file);
+		Scanner scan = new Scanner(configRead);
+		while (scan.hasNextLine()) {
+			contents.add(scan.nextLine());
+		}
+		return contents;
 	}
 }

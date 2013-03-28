@@ -71,14 +71,13 @@ public class FileWriting {
 	public void writeLine(String file, String toWrite, int line)
 			throws IOException {
 
-		ArrayList<String> commText = new ArrayList<String>(1);
-		String rewrite = "";
+		ArrayList<String> contents = new ArrayList<String>(0);
 
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
-		commText.add(scan.nextLine());
-		commText.set(line, toWrite);
-		rewrite = commText.toString();
+		contents.add(scan.nextLine());
+		contents.set(line, toWrite);
+		String rewrite = contents.toString();
 		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(rewrite);

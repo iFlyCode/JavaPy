@@ -17,8 +17,7 @@ public class Downloads {
 	 *            - the place you're putting the file
 	 * @throws IOException
 	 */
-	public static void download(String urlFrom, String directory)
-			throws IOException {
+	public void download(String urlFrom, String directory) throws IOException {
 		URL website = new URL(urlFrom);
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		FileOutputStream fos = new FileOutputStream(directory);
@@ -35,11 +34,10 @@ public class Downloads {
 	 * @return String with contents of file.
 	 * @throws IOException
 	 */
-	public static String readNetPage(String urlFrom) throws IOException {
-		String contents = "";
+	public String readNetPage(String urlFrom) throws IOException {
 		URL website = new URL(urlFrom);
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		contents = rbc.toString();
+		String contents = rbc.toString();
 		return contents;
 	}
 
