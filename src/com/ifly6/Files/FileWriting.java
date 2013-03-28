@@ -1,4 +1,4 @@
-package com.git.ifly6.Files;
+package com.ifly6.Files;
 
 import java.io.BufferedWriter;
 import java.io.FileReader;

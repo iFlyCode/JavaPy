@@ -1,4 +1,4 @@
-package com.git.ifly6.Maths;
+package com.ifly6.Maths;
 
 public class sequences {
 

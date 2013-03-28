@@ -1,4 +1,4 @@
-package com.git.ifly6.Files;
+package com.ifly6.Files;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -71,7 +71,7 @@ public class FileReading {
 	 * @return ArrayList with the file inside, Line by Line
 	 * @throws FileNotFoundException
 	 */
-	public ArrayList<String> readFile(String file) throws FileNotFoundException {
+	public String[] readFile(String file) throws FileNotFoundException {
 		ArrayList<String> contents = new ArrayList<String>(0);
 
 		FileReader configRead = new FileReader(file);
@@ -79,6 +79,6 @@ public class FileReading {
 		while (scan.hasNextLine()) {
 			contents.add(scan.nextLine());
 		}
-		return contents;
+		return (String[]) contents.toArray();
 	}
 }

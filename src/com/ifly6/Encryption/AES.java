@@ -1,4 +1,4 @@
-package com.git.ifly6.Encryption;
+package com.ifly6.Encryption;
 
 public class AES {
 

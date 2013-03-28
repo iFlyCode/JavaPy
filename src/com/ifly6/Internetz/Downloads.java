@@ -1,4 +1,4 @@
-package com.git.ifly6.Internetz;
+package com.ifly6.Internetz;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
