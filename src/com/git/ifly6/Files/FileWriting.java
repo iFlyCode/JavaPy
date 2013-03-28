@@ -14,15 +14,16 @@ public class FileWriting {
 	 * the necessary boolean for appending.
 	 * 
 	 * @param directory
-	 *            directory to write to
+	 *            - directory to write to
 	 * @param contents
-	 *            contents of file that you're going to write to File directory
+	 *            - contents of file that you're going to write to File
+	 *            directory
 	 * @param append
-	 *            boolean on whether you're going to append or not.
+	 *            - boolean on whether you're going to append or not.
 	 * @throws IOException
 	 *             Catch this, and do what you want.
 	 */
-	public static void write(String directory, String contents, boolean append)
+	public void write(String directory, String contents, boolean append)
 			throws IOException {
 		if (append == true) {
 			FileWriter fstream = new FileWriter(directory, append);
@@ -40,14 +41,14 @@ public class FileWriting {
 	 * provide for appending.
 	 * 
 	 * @param directory
-	 *            directory to write to
+	 *            - directory to write to
 	 * @param contents
-	 *            contents of file that you're going to write to File directory
+	 *            - contents of file that you're going to write to File
+	 *            directory
 	 * @throws IOException
 	 *             Catch this, and do what you want.
 	 */
-	public static void write(String directory, String contents)
-			throws IOException {
+	public void write(String directory, String contents) throws IOException {
 		FileWriter fstream = new FileWriter(directory);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(contents);
@@ -59,15 +60,15 @@ public class FileWriting {
 	 * into a string, write the string. Gentlemen, we're done here.
 	 * 
 	 * @param file
-	 *            The file in question
+	 *            - The file in question
 	 * @param toWrite
-	 *            What you're going to write to that line
+	 *            - What you're going to write to that line
 	 * @param line
-	 *            The line in question
+	 *            - The line in question
 	 * @throws IOException
 	 *             Catch this exception. Its caused by FileWriter
 	 */
-	public static void writeLine(String file, String toWrite, int line)
+	public void writeLine(String file, String toWrite, int line)
 			throws IOException {
 
 		ArrayList<String> commText = new ArrayList<String>(1);

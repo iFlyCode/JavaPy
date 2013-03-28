@@ -12,14 +12,13 @@ public class FileReading {
 	 * of that line.
 	 * 
 	 * @param file
-	 *            The file in question
+	 *            - The file in question
 	 * @param line
-	 *            The line in question in the File
+	 *            - The line in question in the File
 	 * @return String with the contents of the line in question.
 	 * @throws FileNotFoundException
 	 */
-	public static String readLine(String file, int line)
-			throws FileNotFoundException {
+	public String readLine(String file, int line) throws FileNotFoundException {
 		ArrayList<String> commText = new ArrayList<String>(1);
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
@@ -32,14 +31,14 @@ public class FileReading {
 	 * String inside that file.
 	 * 
 	 * @param file
-	 *            The file we're searching through.
+	 *            - The file we're searching through.
 	 * @param keyword
-	 *            What we're looking for.
+	 *            - What we're looking for.
 	 * @return An array of integers with the locations of the string you're
 	 *         looking for appears (by line).
 	 * @throws FileNotFoundException
 	 */
-	public static int[] searchFile(String file, String keyword)
+	public int[] searchFile(String file, String keyword)
 			throws FileNotFoundException {
 		ArrayList<String> contents = new ArrayList<String>(1);
 		ArrayList<Integer> search = new ArrayList<Integer>(1);
