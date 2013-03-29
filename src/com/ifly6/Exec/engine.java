@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class engine {
+public class Engine {
 
 	/**
 	 * Executes a command line command, then returns the output and error

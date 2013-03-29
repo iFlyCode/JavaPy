@@ -1,6 +1,6 @@
 package com.ifly6.Maths;
 
-public class sequences {
+public class Sequences {
 
 	/**
 	 * Returns the n'th number in the Fibonacci sequence
