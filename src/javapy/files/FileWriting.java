@@ -10,6 +10,57 @@ import java.util.Scanner;
 public class FileWriting {
 
 	/**
+	 * Method for reading file, integrating file, replacing instances of a
+	 * certain String and replacing it with another. Should not be used on
+	 * massive files.
+	 * 
+	 * @param file
+	 *            - file in question
+	 * @param findString
+	 *            - the String we're looking for
+	 * @param replaceString
+	 *            - the String you want to replace all instances of the other
+	 *            with.
+	 * @throws IOException
+	 */
+	public void replaceInstance(String file, String findString,
+			String replaceString) throws IOException {
+		ArrayList<String> contents = new ArrayList<String>(0);
+	
+		FileReader configRead = new FileReader(file);
+		Scanner scan = new Scanner(configRead);
+		while (scan.hasNextLine()) {
+			contents.add(scan.nextLine());
+		}
+		String newContents = contents.toString();
+		newContents.replace(findString, replaceString);
+	
+		FileWriter fstream = new FileWriter(file);
+		BufferedWriter out = new BufferedWriter(fstream);
+		out.write(newContents);
+		out.close();
+	}
+
+	/**
+	 * Method to write a file with the contents of a provided string. Does not
+	 * provide for appending.
+	 * 
+	 * @param directory
+	 *            - directory to write to
+	 * @param contents
+	 *            - contents of file that you're going to write to File
+	 *            directory
+	 * @throws IOException
+	 *             Catch this, and do what you want.
+	 */
+	public void write(String directory, String contents) throws IOException {
+		FileWriter fstream = new FileWriter(directory);
+		BufferedWriter out = new BufferedWriter(fstream);
+		out.write(contents);
+		out.close();
+	}
+
+	/**
 	 * Method to write a file with the contents of a provided string. Provides
 	 * the necessary boolean for appending.
 	 * 
@@ -37,21 +88,23 @@ public class FileWriting {
 	}
 
 	/**
-	 * Method to write a file with the contents of a provided string. Does not
-	 * provide for appending.
+	 * Method for convenience for writing an array of Strings to a file by line.
+	 * It appends, instead of writes over.
 	 * 
-	 * @param directory
-	 *            - directory to write to
-	 * @param contents
-	 *            - contents of file that you're going to write to File
-	 *            directory
+	 * @author ifly6
+	 * @param file
+	 *            - The file to write to.
+	 * @param input
+	 *            - The String Array given to write to lines by index.
 	 * @throws IOException
-	 *             Catch this, and do what you want.
 	 */
-	public void write(String directory, String contents) throws IOException {
-		FileWriter fstream = new FileWriter(directory);
+	public void writeArray(String file, String[] input) throws IOException {
+		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
-		out.write(contents);
+		for (String element : input) {
+			out.append(element);
+			out.newLine();
+		}
 		out.close();
 	}
 
@@ -83,4 +136,5 @@ public class FileWriting {
 		out.write(rewrite);
 		out.close();
 	}
+
 }

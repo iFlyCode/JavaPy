@@ -6,7 +6,7 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-public class Downloads {
+public class WebTxt {
 
 	/**
 	 * Downloads a file from a URL, then places it into a folder.

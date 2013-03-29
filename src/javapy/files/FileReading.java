@@ -8,6 +8,25 @@ import java.util.Scanner;
 public class FileReading {
 
 	/**
+	 * Reads the file, puts it into an Array, by the line number = index.
+	 * 
+	 * @author ifly6
+	 * @param file
+	 * @return ArrayList with the file inside, Line by Line
+	 * @throws FileNotFoundException
+	 */
+	public String[] readFile(String file) throws FileNotFoundException {
+		ArrayList<String> contents = new ArrayList<String>(0);
+
+		FileReader configRead = new FileReader(file);
+		Scanner scan = new Scanner(configRead);
+		while (scan.hasNextLine()) {
+			contents.add(scan.nextLine());
+		}
+		return (String[]) contents.toArray();
+	}
+
+	/**
 	 * Method to look inside a file for a certain line, and return the contents
 	 * of that line.
 	 * 
@@ -64,24 +83,5 @@ public class FileReading {
 			locations[x] = Integer.getInteger(strings[x]);
 		}
 		return locations;
-	}
-
-	/**
-	 * Reads the file, puts it into an ArrayList, then returns the ArrayList
-	 * 
-	 * @author ifly6
-	 * @param file
-	 * @return ArrayList with the file inside, Line by Line
-	 * @throws FileNotFoundException
-	 */
-	public String[] readFile(String file) throws FileNotFoundException {
-		ArrayList<String> contents = new ArrayList<String>(0);
-
-		FileReader configRead = new FileReader(file);
-		Scanner scan = new Scanner(configRead);
-		while (scan.hasNextLine()) {
-			contents.add(scan.nextLine());
-		}
-		return (String[]) contents.toArray();
 	}
 }
