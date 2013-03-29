@@ -5,6 +5,8 @@ public class AES {
 	/**
 	 * Takes an an array of strings and and item, and returns true if that array has the item in it
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param list
 	 *            - the array to check
 	 * @param item
@@ -25,6 +27,8 @@ public class AES {
 	/**
 	 * Takes an an array of strings and item, and inserts the item into the first empty index of the array
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param list
 	 *            - the array to have the item inserted into
 	 * @param item
@@ -44,6 +48,8 @@ public class AES {
 	/**
 	 * Takes an a string, and returns an array of the strings' letters
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param inStr
 	 *            - the string
 	 * @return array of letters
@@ -59,6 +65,8 @@ public class AES {
 	/**
 	 * Takes an array of strings, and returns a string of the items in the list concatenated
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param inLis
 	 *            - the array of strings
 	 * @return concatenated string
@@ -73,6 +81,8 @@ public class AES {
 	
 	/**
 	 * Takes an an array of strings and and item, and returns the index of the array that the item occupies, -1 if not in the array
+	 * 
+	 * @author ncolaprete
 	 * 
 	 * @param list
 	 *            - the array to check
@@ -91,6 +101,8 @@ public class AES {
 
 	/**
 	 * Encrypts one string with the Vigenère Cipher, using another string as a keycode.
+	 * 
+	 * @author ncolaprete
 	 * 
 	 * @param plainText
 	 *            - the text we're encrypting
@@ -139,6 +151,8 @@ public class AES {
 	/**
 	 * Decrypts one string with the Vigenère Cipher, using another string as a keycode.
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param encrypted
 	 *            - the text encrypted
 	 * @param keyCode
@@ -185,6 +199,8 @@ public class AES {
 	/**
 	 * Encrypts one string with the Dynamic Alphabetical Shift Cipher, using another string as a keycode.
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param encrypted
 	 *            - the text to encrypt
 	 * @param keyCode
@@ -226,6 +242,8 @@ public class AES {
 
 	/**
 	 * Decrypts one string with the Dynamic Alphabetical Shift Cipher, using another string as a keycode.
+	 * 
+	 * @author ncolaprete
 	 * 
 	 * @param encrypted
 	 *            - the text encrypted
