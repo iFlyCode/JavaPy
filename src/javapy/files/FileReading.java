@@ -5,6 +5,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class for methods which relate to reading a file and providing an output, or
+ * information about what was read. There should be no methods which actually
+ * CHANGE the file inside this class.
+ */
 public class FileReading {
 
 	/**

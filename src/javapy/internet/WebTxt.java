@@ -6,6 +6,10 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
+/**
+ * These are methods which all pertain to getting a text return from a web page.
+ * There should be no unrelated methods here.
+ */
 public class WebTxt {
 
 	/**

@@ -1,5 +1,9 @@
 package javapy.physics;
 
+/**
+ * Methods relating to the physics concept of Gravitation should go here, sorted
+ * by which parameter in which they apply, like Newtonian, etc.
+ */
 public class Gravitation {
 
 	/**

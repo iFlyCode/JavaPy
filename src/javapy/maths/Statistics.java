@@ -2,6 +2,9 @@ package javapy.maths;
 
 import java.util.ArrayList;
 
+/**
+ * Methods which perform statistical analysis should go here.
+ */
 public class Statistics {
 
 	/**

@@ -2,6 +2,9 @@ package javapy.files;
 
 import java.io.File;
 
+/**
+ * Methods which pertain to the deletion of a file/files, should all go here.
+ */
 public class Delete {
 
 	/**

@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The place for methods which involve a file, and involve the changing of the
+ * contents of that file.
+ */
 public class FileWriting {
 
 	/**
@@ -26,7 +30,7 @@ public class FileWriting {
 	public void replaceInstance(String file, String findString,
 			String replaceString) throws IOException {
 		ArrayList<String> contents = new ArrayList<String>(0);
-	
+
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
 		while (scan.hasNextLine()) {
@@ -34,7 +38,7 @@ public class FileWriting {
 		}
 		String newContents = contents.toString();
 		newContents.replace(findString, replaceString);
-	
+
 		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(newContents);

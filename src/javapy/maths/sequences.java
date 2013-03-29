@@ -1,6 +1,9 @@
 package javapy.maths;
 
-public class sequences {
+/**
+ * Methods with relation to sequences should go here.
+ */
+public class Sequences {
 
 	/**
 	 * Calculates the total of a converging sequence.
