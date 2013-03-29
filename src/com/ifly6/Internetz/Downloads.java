@@ -11,6 +11,7 @@ public class Downloads {
 	/**
 	 * Downloads a file from a URL, then places it into a folder.
 	 * 
+	 * @author ifly6
 	 * @param urlFrom
 	 *            - the URL you're downloading from.
 	 * @param directory
@@ -29,6 +30,7 @@ public class Downloads {
 	 * Reads the contents of a file online. This will return the <b>pure</b> raw
 	 * text form of the file, with no formatting.
 	 * 
+	 * @author ifly6
 	 * @param urlFrom
 	 *            - URL with file you're reading from.
 	 * @return String with contents of file.

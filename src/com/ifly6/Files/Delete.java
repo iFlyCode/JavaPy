@@ -7,6 +7,7 @@ public class Delete {
 	/**
 	 * Delete a file.
 	 * 
+	 * @author ifly6
 	 * @param directory
 	 *            - the file in question that you're deleting
 	 */

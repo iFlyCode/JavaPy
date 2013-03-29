@@ -12,6 +12,7 @@ public class engine {
 	 * Executes a command line command, then returns the output and error
 	 * streams inside a String
 	 * 
+	 * @author ifly6
 	 * @param input
 	 *            - String to run through ProcessBuilder
 	 * @throws IOException

@@ -6,7 +6,7 @@ public class sequences {
 	 * Returns the n'th number in the Fibonacci sequence
 	 * 
 	 * @param n
-	 *             - the number input
+	 *            - the number input
 	 * @return n'th number in the sequence
 	 */
 	public int fibonacci(int n) {
@@ -15,13 +15,14 @@ public class sequences {
 		} else if (n <= 0) {
 			return 0;
 		} else {
-			return fibonacci(n-1) + fibonacci(n-2);
+			return fibonacci(n - 1) + fibonacci(n - 2);
 		}
 	}
-	
+
 	/**
 	 * Raise a number to an integer power.
 	 * 
+	 * @author ifly6
 	 * @param number
 	 *            - the base
 	 * @param raisedTo
@@ -38,6 +39,7 @@ public class sequences {
 	/**
 	 * Calculates the total of a converging sequence.
 	 * 
+	 * @author ifly6
 	 * @param r
 	 *            - the factor of increasure
 	 * @param starting

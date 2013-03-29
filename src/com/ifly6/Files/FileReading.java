@@ -17,6 +17,7 @@ public class FileReading {
 	 *            - The line in question in the File
 	 * @return String with the contents of the line in question.
 	 * @throws FileNotFoundException
+	 * @author ifly6
 	 */
 	public String readLine(String file, int line) throws FileNotFoundException {
 		ArrayList<String> contents = new ArrayList<String>(0);
@@ -33,6 +34,7 @@ public class FileReading {
 	 * A complicated method to search through a file for instances of a certain
 	 * String inside that file.
 	 * 
+	 * @author ifly6
 	 * @param file
 	 *            - The file we're searching through.
 	 * @param keyword
@@ -67,6 +69,7 @@ public class FileReading {
 	/**
 	 * Reads the file, puts it into an ArrayList, then returns the ArrayList
 	 * 
+	 * @author ifly6
 	 * @param file
 	 * @return ArrayList with the file inside, Line by Line
 	 * @throws FileNotFoundException
