@@ -2,6 +2,7 @@ package com.ifly6.Files;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,5 +81,41 @@ public class FileReading {
 			contents.add(scan.nextLine());
 		}
 		return (String[]) contents.toArray();
+	}
+
+	/**
+	 * Search for the line of text in the file provided
+	 * 
+	 * @author ncolaprete
+	 * 
+	 * @param fileDir
+	 *            - Directory of the file to search in
+	 * @param text
+	 *            - Text to search for
+	 * @return array of all the lines the text was found on
+	 */
+	public static int[] findInFile(String fileDir, String text) {
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		try {
+			Scanner scan = new Scanner(new FileReader(fileDir));
+			int l = 0;
+			String curLine = "";
+			while (scan.hasNextLine()) {
+				l++;
+				int len = text.length();
+				curLine = scan.nextLine();
+				for (int i=0;i<curLine.length() - len + 1;i++) {
+					String sub = curLine.substring(i,i+len);
+					if (sub.equals(text)) {
+						indexes.add(l);
+						break;
+					}
+				}
+			}
+			scan.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return com.ifly6.General.array.ArrayListToArray(indexes);
 	}
 }

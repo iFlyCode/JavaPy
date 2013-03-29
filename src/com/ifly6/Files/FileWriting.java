@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import com.ifly6.General.*;
 
 public class FileWriting {
 
@@ -88,7 +89,7 @@ public class FileWriting {
 	
 	/**
 	 * Append the line to the end of the file specified. Simple, easy, quick.
-	 * If the file doesn't exist, then it return false.
+	 * If the file doesn't exist, then it returns false.
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -111,5 +112,53 @@ public class FileWriting {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	/**
+	 * Find every instance of the given text and replace it with something else.
+	 * 
+	 * @author ncolaprete
+	 * 
+	 * @param fileDir
+	 *            - Directory of the file to search
+	 * @param find
+	 *            - Text to search for
+	 * @param replace
+	 *            - Text to replace with
+	 * @return array of all the lines the text was found on
+	 */
+	public static int[] findAndReplace(String fileDir, String find, String replace) {
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		ArrayList<String> lines = new ArrayList<String>();
+		try {
+			Scanner scan = new Scanner(new FileReader(fileDir));
+			while (scan.hasNextLine()) {
+				lines.add(scan.nextLine());
+			}
+			scan.close();
+			int l = -1;
+			for (String line : lines) {
+				l++;
+				int len = find.length();
+				for (int i=0;i<line.length() - len + 1;i++) {
+					String sub = line.substring(i,i+len);
+					if (sub.equalsIgnoreCase(find)) {
+						indexes.add(l+1);
+						lines.set(l, line.substring(0,i) + replace + line.substring(i+len,line.length()));
+					}
+				}
+			}
+			BufferedWriter clear = new BufferedWriter(new FileWriter(fileDir));
+			clear.write("");
+			clear.close();
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileDir, true)));
+			for (String line : lines) {
+				out.println(line);
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return com.ifly6.General.array.ArrayListToArray(indexes);
 	}
 }
