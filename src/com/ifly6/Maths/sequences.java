@@ -5,6 +5,8 @@ public class sequences {
 	/**
 	 * Returns the n'th number in the Fibonacci sequence
 	 * 
+	 * @author ncolaprete
+	 * 
 	 * @param n
 	 *             - the number input
 	 * @return n'th number in the sequence
