@@ -1,6 +1,6 @@
-package com.ifly6.Maths;
+package javapy.maths;
 
-public class Sequences {
+public class sequences {
 
 	/**
 	 * Returns the n'th number in the Fibonacci sequence

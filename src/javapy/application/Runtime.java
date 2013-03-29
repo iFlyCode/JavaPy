@@ -1,4 +1,4 @@
-package com.ifly6.Exec;
+package javapy.application;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Engine {
+public class Runtime {
 
 	/**
 	 * Executes a command line command, then returns the output and error

@@ -1,4 +1,4 @@
-package com.ifly6.Files;
+package javapy.files;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package com.ifly6.physics;
+package javapy.physics;
 
 public class Gravitation {
 

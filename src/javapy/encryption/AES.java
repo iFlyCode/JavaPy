@@ -1,4 +1,4 @@
-package com.ifly6.Encryption;
+package javapy.encryption;
 
 public class AES {
 
