@@ -3,6 +3,23 @@ package com.ifly6.Maths;
 public class sequences {
 
 	/**
+	 * Returns the n'th number in the Fibonacci sequence
+	 * 
+	 * @param n
+	 *             - the number input
+	 * @return n'th number in the sequence
+	 */
+	public int fibonacci(int n) {
+		if (n == 1) {
+			return 1;
+		} else if (n <= 0) {
+			return 0;
+		} else {
+			return fibonacci(n-1) + fibonacci(n-2);
+		}
+	}
+	
+	/**
 	 * Raise a number to an integer power.
 	 * 
 	 * @param number
