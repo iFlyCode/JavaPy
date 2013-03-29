@@ -1,9 +1,11 @@
 package com.ifly6.Files;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -82,5 +84,32 @@ public class FileWriting {
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(rewrite);
 		out.close();
+	}
+	
+	/**
+	 * Append the line to the end of the file specified. Simple, easy, quick.
+	 * If the file doesn't exist, then it return false.
+	 * 
+	 * @author ncolaprete
+	 * 
+	 * @param fileDir
+	 *            - The directory of the file
+	 * @param toAppend
+	 *            - Text to append to the file
+	 * @return False if the file doesn't exist, or an error was encountered
+	 */
+	public boolean appendToFile(String fileDir, String toAppend) {
+		try {
+			File file = new File(fileDir);
+			if (!file.exists())
+				return false;
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileDir, true)));
+			out.println(toAppend);
+			out.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
