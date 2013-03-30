@@ -19,4 +19,17 @@ public class Delete {
 		file.delete();
 	}
 
+	/**
+	 * Deletes files that are declared in an array of Strings.
+	 * 
+	 * @param directories
+	 *            - the files in question which are to be deleted.
+	 */
+	public void delete(String[] directories) {
+		for (String element : directories) {
+			File file = new File(element);
+			file.delete();
+		}
+	}
+
 }
