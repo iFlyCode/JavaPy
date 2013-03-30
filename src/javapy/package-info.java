@@ -5,5 +5,10 @@
  * their operability inside the package. We encourage method overloading, and we
  * ask that methods are not repeated in functionality, and that methods which
  * have similar functions draw upon the same algorithmic base.
+ * 
+ * Secondly, we shouldn't build functions are are literally redundant. There are
+ * functions that are useful, as code snippets or as library functions, but many
+ * more are useless due to the fact that the end programmer can write them in
+ * seconds.
  */
 package javapy;
