@@ -18,6 +18,7 @@ public class FileWriting {
 	 * certain String and replacing it with another. Should not be used on
 	 * massive files.
 	 * 
+	 * @author ifly6
 	 * @param file
 	 *            - file in question
 	 * @param findString
@@ -49,6 +50,7 @@ public class FileWriting {
 	 * Method to write a file with the contents of a provided string. Does not
 	 * provide for appending.
 	 * 
+	 * @author ifly6
 	 * @param directory
 	 *            - directory to write to
 	 * @param contents
@@ -68,6 +70,7 @@ public class FileWriting {
 	 * Method to write a file with the contents of a provided string. Provides
 	 * the necessary boolean for appending.
 	 * 
+	 * @author ifly6
 	 * @param directory
 	 *            - directory to write to
 	 * @param contents
@@ -116,6 +119,7 @@ public class FileWriting {
 	 * Read a file, find the line in question, replace that line, put all that
 	 * into a string, write the string. Gentlemen, we're done here.
 	 * 
+	 * @author ifly6
 	 * @param file
 	 *            - The file in question
 	 * @param toWrite

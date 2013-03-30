@@ -48,61 +48,57 @@ public class Statistics {
 
 		return deviation;
 	}
-	
+
 	/**
-	 * Caluclates Chi Squared. Takes a mutlidimentional array of doubles,
-	 * and returns the chi squared of them.
+	 * Calculates Chi Squared. Takes a multi-dimensional array of doubles, and
+	 * returns the Chi squared of them.
 	 * 
 	 * @author ncolaprete
 	 * 
-	 * @param Matrix of double values
+	 * @param Matrix
+	 *            of double values
 	 * 
-	 * @return Chi squared of the inputted values
+	 * @return Chi squared of the inputed values
 	 */
-	public double chiSquared (double[][] observed) {
+	public double chiSquared(double[][] observed) {
 		double[] hTotals = new double[observed.length];
 		double[] vTotals = new double[observed[0].length];
 		double total = 0;
-		
+
 		// Get Totals
-		
-		for (int i=0;i<hTotals.length;i++) {
-			for (int j=0;j<vTotals.length;j++) {
+		for (int i = 0; i < hTotals.length; i++) {
+			for (int j = 0; j < vTotals.length; j++) {
 				hTotals[i] += observed[i][j];
 				vTotals[j] += observed[j][i];
 				total += observed[i][j];
 			}
 		}
-		
+
 		// Get Expected Values
-		
 		double[][] expected = new double[observed.length][observed[0].length];
-		for (int i=0;i<hTotals.length;i++) {
-			for (int j=0;j<vTotals.length;j++) {
-				expected[i][j] = (vTotals[i]*hTotals[j])/total;
+		for (int i = 0; i < hTotals.length; i++) {
+			for (int j = 0; j < vTotals.length; j++) {
+				expected[i][j] = (vTotals[i] * hTotals[j]) / total;
 			}
 		}
-		
+
 		// Get Chi Values
-		
 		double[][] chis = new double[observed.length][observed[0].length];
-		
-		for (int i=0;i<hTotals.length;i++) {
-			for (int j=0;j<vTotals.length;j++) {
-				chis[i][j] = (Math.pow(observed[i][j]-expected[i][j], 2))/expected[i][j];
+		for (int i = 0; i < hTotals.length; i++) {
+			for (int j = 0; j < vTotals.length; j++) {
+				chis[i][j] = (Math.pow(observed[i][j] - expected[i][j], 2))
+						/ expected[i][j];
 			}
 		}
-		
+
 		// Get Chi Total
-		
 		double chi = 0;
-		
-		for (int i=0;i<hTotals.length;i++) {
-			for (int j=0;j<vTotals.length;j++) {
+		for (int i = 0; i < hTotals.length; i++) {
+			for (int j = 0; j < vTotals.length; j++) {
 				chi += chis[i][j];
 			}
 		}
-		
+
 		return chi;
 	}
 }
