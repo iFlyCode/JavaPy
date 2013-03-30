@@ -4,6 +4,7 @@ package javapy.maths;
  * Methods with relation to sequences should go here.
  */
 public class Sequences {
+	// TODO Regression
 
 	/**
 	 * Calculates the total of a converging sequence.
@@ -56,6 +57,4 @@ public class Sequences {
 		}
 		return number;
 	}
-
-	// Do regression
 }

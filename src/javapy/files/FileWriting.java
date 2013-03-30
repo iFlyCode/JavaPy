@@ -136,12 +136,13 @@ public class FileWriting {
 
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
-		contents.add(scan.nextLine());
-		contents.set(line, toWrite);
-		String rewrite = contents.toString();
+		contents.add(scan.nextLine()); // Input into ArrayList
+		contents.set(line, toWrite); // Find and set Line to String
+
+		String rewrite = contents.toString(); // Integrate into String
 		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
-		out.write(rewrite);
+		out.write(rewrite); // Write String
 		out.close();
 	}
 
