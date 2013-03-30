@@ -3,7 +3,7 @@ package javapy.maths;
 /**
  * Methods with relation to sequences should go here.
  */
-public class Sequences {
+public class sequences {
 
 	/**
 	 * Calculates the total of a converging sequence.

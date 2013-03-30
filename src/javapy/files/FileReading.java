@@ -83,10 +83,13 @@ public class FileReading {
 			}
 		}
 		String[] strings = (String[]) search.toArray();
+
+		// Convert ArrayList to int[]
 		int[] locations = new int[search.size()];
 		for (int x = 0; x < strings.length; x++) {
 			locations[x] = Integer.getInteger(strings[x]);
 		}
+
 		return locations;
 	}
 }
