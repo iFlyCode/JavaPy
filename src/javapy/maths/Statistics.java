@@ -54,9 +54,7 @@ public class Statistics {
 	 * and returns the chi squared of them.
 	 * 
 	 * @author ncolaprete
-	 * 
 	 * @param Matrix of double values
-	 * 
 	 * @return Chi squared of the inputted values
 	 */
 	public double chiSquared (double[][] observed) {
@@ -104,5 +102,94 @@ public class Statistics {
 		}
 		
 		return chi;
+	}
+	
+	/**
+	 * Takes a matrix of doubles and returns the calculated F-test values
+	 * 
+	 * @author ncolaprete
+	 * @param data to do the test on
+	 * @return F value
+	 */
+	public double ANOVA(double[][] data) {
+		
+		// Calculate Averages
+		
+		double[] mean = new double[data.length];
+		for (int row=0;row<data.length;row++) {
+			double cMean = 0;
+			for (double i : data[row]) {
+				cMean += i;
+			}
+			mean[row] = cMean/data[row].length;
+		}
+		
+		// Calculate Variance
+		
+		double[] variance = new double[data.length];
+		for (int row=0;row<data.length;row++) {
+			variance[row] = Math.pow(standardDeviation(data[row]), 2);
+		}
+		
+		// Caluclate number of items in each row
+		
+		int[] n = new int[data.length];
+		for (int row=0;row<data.length;row++) {
+			n[row] = data[row].length;
+		}
+		
+		// Calculate total number of items
+		
+		int N = 0;
+		for (int i : n) {
+			N += i;
+		}
+		
+		// Calculate number of rows
+		
+		int K = data.length;
+		
+		// Calculate Grand Mean
+		
+		double grandMean = 0;
+		for (double i : mean) {
+			grandMean += i;
+		}
+		grandMean /= mean.length;
+		
+		// Calculate Sum of Squares Between
+		
+		double[] SSB = new double[data.length];
+		for (int row=0;row<data.length;row++) {
+			SSB[row] = Math.pow(mean[row] - grandMean, 2)*n[row];
+		}
+		
+		// Calculate Sum of Squares Within
+
+		double[] SSW = new double[data.length];
+		for (int row=0;row<data.length;row++) {
+			SSW[row] = (n[row] - 1)*variance[row];
+		}
+		
+		// Calculate Mean Squares Between
+		
+		double MSB = 0;
+		for (int row=0;row<data.length;row++) {
+			MSB += SSB[row];
+		}
+		MSB /= K-1;
+		
+		// Calculate Mean Squares Within
+		
+		double MSW = 0;
+		for (int row=0;row<data.length;row++) {
+			MSW += SSW[row];
+		}
+		MSW /= N-K;
+		
+		// Return the F-test result
+		
+		return MSB/MSW;
+		
 	}
 }
