@@ -5,6 +5,17 @@ package javapy.maths;
  */
 public class Algebra {
 
+	/**
+	 * Method does quadratic formula.
+	 * 
+	 * @param a
+	 *            - Coefficient of x^2
+	 * @param b
+	 *            - Coefficient of x
+	 * @param c
+	 *            - Constant
+	 * @return Array of doubles with the two answers.
+	 */
 	public double[] quadForm(double a, double b, double c) {
 		double[] answer = new double[1];
 
@@ -17,6 +28,7 @@ public class Algebra {
 	/**
 	 * Pythagorean theorem method.
 	 * 
+	 * @author ifly6
 	 * @param legA
 	 *            - Leg of Right Triangle, A (or, in the case of not knowing the
 	 *            leg, Hypotenuse)
