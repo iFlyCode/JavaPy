@@ -13,7 +13,12 @@ import java.util.Scanner;
 public class FileReading {
 
 	/**
-	 * Reads the file, puts it into an Array, by the line number = index.
+	 * <ul><li><b><i>
+	 * readFile
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String[] readFile(String file) throws FileNotFoundException
+	 * </p><p>
+	 * Reads the file, puts it into an Array, by the line number = index.</p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -28,35 +33,53 @@ public class FileReading {
 		while (scan.hasNextLine()) {
 			contents.add(scan.nextLine());
 		}
+		scan.close();
 		return (String[]) contents.toArray();
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * readLine
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String readLine(String file, int line)
+	 * </p><p>
 	 * Method to look inside a file for a certain line, and return the contents
-	 * of that line.
+	 * of that line.</p>
 	 * 
 	 * @param file
 	 *            - The file in question
 	 * @param line
 	 *            - The line in question in the File
-	 * @return String with the contents of the line in question.
+	 * @return String with the contents of the line in question, 
+	 * 			but a blank string if the line is longer than
+	 * 			the file
 	 * @throws FileNotFoundException
-	 * @author ifly6
+	 * @author ncolaprete
 	 */
 	public String readLine(String file, int line) throws FileNotFoundException {
-		ArrayList<String> contents = new ArrayList<String>(0);
 
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
+		int i = 0;
 		while (scan.hasNextLine()) {
-			contents.add(scan.nextLine());
+			i++;
+			if (line == i) {
+				scan.close();
+				return scan.nextLine();
+			}
 		}
-		return contents.get(line);
+		scan.close();
+		return "";
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * searchFile
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public int[] searchFile(String file, String keyword)
+	 * </p><p>
 	 * A complicated method to search through a file for instances of a certain
-	 * String inside that file.
+	 * String inside that file.</p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -76,6 +99,7 @@ public class FileReading {
 		while (scan.hasNextLine()) {
 			contents.add(scan.nextLine());
 		}
+		scan.close();
 		for (int x = 0; x < contents.size(); x++) {
 			String evaluate = contents.get(x);
 			if (evaluate.contains(keyword)) {

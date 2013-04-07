@@ -14,7 +14,12 @@ import java.nio.channels.ReadableByteChannel;
 public class WebTxt {
 
 	/**
-	 * Downloads a file from a URL, then places it into a folder.
+	 * <ul><li><b><i>
+	 * download
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void download(String urlFrom, String directory) throws IOException
+	 * </p><p>
+	 * Downloads a file from a URL, then places it into a folder.</p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
@@ -32,8 +37,13 @@ public class WebTxt {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * readNetPage
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String readNetPage(String urlFrom) throws IOException
+	 * </p><p>
 	 * Reads the contents of a file online. This will return the <b>pure</b> raw
-	 * text form of the file, with no formatting.
+	 * text form of the file, with no formatting.</p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
@@ -49,17 +59,20 @@ public class WebTxt {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * newInetFile
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public File newInetFile(String urlFrom, String directory)
+	 * </p><p>
 	 * Convenience method to create a new file based off downloaded data from
-	 * the Internet.
+	 * the Internet.</p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
 	 *            - URL to fetch data from.
 	 * @param directory
 	 *            - Place to put data.
-	 * @return File, where the data was placed... Though if you're a real
-	 *         programmer, you'll realise that String directory is the same as
-	 *         this.
+	 * @return File where the data was placed.
 	 * @throws IOException
 	 */
 	public File newInetFile(String urlFrom, String directory)

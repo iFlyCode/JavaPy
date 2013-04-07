@@ -14,9 +14,15 @@ import java.util.Scanner;
 public class FileWriting {
 
 	/**
+	 * <ul><li><b><i>
+	 * replaceInstance
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void replaceInstance(String file, String findString,
+	 * String replaceString) throws IOException
+	 * </p><p>
 	 * Method for reading file, integrating file, replacing instances of a
 	 * certain String and replacing it with another. Should not be used on
-	 * massive files.
+	 * massive files.</p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -37,6 +43,7 @@ public class FileWriting {
 		while (scan.hasNextLine()) {
 			contents.add(scan.nextLine());
 		}
+		scan.close();
 		String newContents = contents.toString();
 		newContents.replace(findString, replaceString);
 
@@ -47,8 +54,13 @@ public class FileWriting {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * write
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void write(String directory, String contents) throws IOException
+	 * </p><p>
 	 * Method to write a file with the contents of a provided string. Does not
-	 * provide for appending.
+	 * provide for appending.</p>
 	 * 
 	 * @author ifly6
 	 * @param directory
@@ -67,8 +79,13 @@ public class FileWriting {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * write
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void write(String directory, String contents, boolean append)
+	 * </p><p>
 	 * Method to write a file with the contents of a provided string. Provides
-	 * the necessary boolean for appending.
+	 * the necessary boolean for appending.</p>
 	 * 
 	 * @author ifly6
 	 * @param directory
@@ -95,8 +112,13 @@ public class FileWriting {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * writeArray
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void writeArray(String file, String[] input)
+	 * </p><p>
 	 * Method for convenience for writing an array of Strings to a file by line.
-	 * It appends, instead of writes over.
+	 * It appends, instead of writes over.</p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -116,8 +138,14 @@ public class FileWriting {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * writeLine
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void writeLine(String file, String toWrite,
+	 * int line) throws IOException
+	 * </p><p>
 	 * Read a file, find the line in question, replace that line, put all that
-	 * into a string, write the string. Gentlemen, we're done here.
+	 * into a string, write the string. Gentlemen, we're done here.</p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -138,12 +166,13 @@ public class FileWriting {
 		Scanner scan = new Scanner(configRead);
 		contents.add(scan.nextLine()); // Input into ArrayList
 		contents.set(line, toWrite); // Find and set Line to String
-
+		
 		String rewrite = contents.toString(); // Integrate into String
 		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
 		out.write(rewrite); // Write String
 		out.close();
+		scan.close();
 	}
 
 }

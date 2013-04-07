@@ -8,7 +8,12 @@ import java.io.File;
 public class Delete {
 
 	/**
-	 * Delete a file.
+	 * <ul><li><b><i>
+	 * delete
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void delete(String[] directories)
+	 * </p><p>
+	 * Delete a file.</p>
 	 * 
 	 * @author ifly6
 	 * @param directory
@@ -20,7 +25,12 @@ public class Delete {
 	}
 
 	/**
-	 * Deletes files that are declared in an array of Strings.
+	 * <ul><li><b><i>
+	 * delete
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void delete(String[] directiories)
+	 * </p><p>
+	 * Deletes files that are declared in an array of Strings.</p>
 	 * 
 	 * @param directories
 	 *            - the files in question which are to be deleted.

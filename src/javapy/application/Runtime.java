@@ -13,8 +13,13 @@ import java.util.Scanner;
 public class Runtime {
 
 	/**
+	 * <ul><li><b><i>
+	 * execReturn
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String execReturn(final String[] input) throws IOExcpetion
+	 * </p><p>
 	 * Executes a command line command, then returns the output and error
-	 * streams inside a String.
+	 * streams inside a String.</p>
 	 * 
 	 * @author ifly6
 	 * @param input
@@ -37,7 +42,7 @@ public class Runtime {
 		while (scan.hasNextLine()) {
 			total.add(scan.nextLine());
 		}
-
+		scan.close();
 		// Error Stream
 		InputStream errStream = process.getErrorStream();
 		InputStreamReader errRead = new InputStreamReader(errStream);
@@ -45,11 +50,16 @@ public class Runtime {
 		while (scan.hasNextLine()) {
 			total.add(scan.nextLine());
 		}
-
+		scan.close();
 		return total.toString();
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * exec
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public void exec(final String[] input) throws IOException
+	 * </p><p>
 	 * Just launches a process with the associated command-line functions, there
 	 * is no return.
 	 * 

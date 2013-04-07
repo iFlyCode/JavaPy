@@ -3,8 +3,13 @@ package javapy.encryption;
 public class Cipher {
 
 	/**
+	 * <ul><li><b><i>
+	 * append
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String[] append(String[] list, String item)
+	 * </p><p>
 	 * Takes an an array of strings and item, and inserts the item into the
-	 * first empty index of the array
+	 * first empty index of the array.</p>
 	 * 
 	 * @author ncolaprete
 	 * @param list
@@ -24,8 +29,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * decryptDAS
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String decryptDAS(String plainText, String keyCode)
+	 * </p><p>
 	 * Decrypts one string with the Dynamic Alphabetical Shift Cipher, using
-	 * another string as a keycode.
+	 * another string as a keycode.</p>
 	 * 
 	 * @author ncolaprete
 	 * @param encrypted
@@ -66,8 +76,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * decryptVignere
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String decryptVignere(String encrypted, String keyCode)
+	 * </p><p>
 	 * Decrypts one string with the Vigenère Cipher, using another string as a
-	 * keycode.
+	 * keycode.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -112,8 +127,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * encryptDAS
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String encryptDAS(String plainText, String keyCode)
+	 * </p><p>
 	 * Encrypts one string with the Dynamic Alphabetical Shift Cipher, using
-	 * another string as a key code.
+	 * another string as a key code.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -154,8 +174,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * encryptVignere
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String encryptVignere(String plainText, String keyCode)
+	 * </p><p>
 	 * Encrypts one string with the Vigenère Cipher, using another string as a
-	 * key code.
+	 * key code.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -201,8 +226,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * getIndex
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public int getIndex(String[] list, String item)
+	 * </p><p>
 	 * Takes an an array of strings and and item, and returns the index of the
-	 * array that the item occupies, -1 if not in the array
+	 * array that the item occupies, -1 if not in the array.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -222,7 +252,12 @@ public class Cipher {
 	}
 
 	/**
-	 * Takes an a string, and returns an array of the strings' letters
+	 * <ul><li><b><i>
+	 * getListFrom
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String[] getListFrom(String inStr)
+	 * </p><p>
+	 * Takes a string, and returns an array of the strings' letters.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -239,8 +274,13 @@ public class Cipher {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * hasString
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public boolean hasString(String[] list, String item)
+	 * </p><p>
 	 * Takes an an array of strings and and item, and returns true if that array
-	 * has the item in it
+	 * has the item in it.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
@@ -262,8 +302,13 @@ public class Cipher {
 	}
 
 	/**
-	 * Takes an array of strings, and returns a string of the items in the list,
-	 * connected
+	 * <ul><li><b><i>
+	 * seal
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public String seal(String[] inList)
+	 * </p><p>
+	 * Takes an array of strings, and returns a string of the items in the list
+	 * concatenated together.</p>
 	 * 
 	 * @author ncolaprete
 	 * @author ifly6

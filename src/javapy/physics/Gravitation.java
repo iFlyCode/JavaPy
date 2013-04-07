@@ -7,7 +7,12 @@ package javapy.physics;
 public class Gravitation {
 
 	/**
-	 * Calculate the Newtons of an object falling in standard Paris gravity.
+	 * <ul><li><b><i>
+	 * earth
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public double earth(double mass)
+	 * </p><p>
+	 * Calculate the Newtons of an object falling in standard Paris gravity.</p>
 	 * 
 	 * @param mass
 	 *            - Mass of the object in question.
@@ -18,15 +23,20 @@ public class Gravitation {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * newtonian
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public double newtonian(double mass1, double mass2, double distance)
+	 * </p><p>
 	 * This is a caller for the other Newtonian gravitation class - just with
-	 * the gravitational constant hard-coded into the programme.
+	 * the gravitational constant hard-coded into the programme.</p>
 	 * 
 	 * @param mass1
 	 *            - Mass of first object
 	 * @param mass2
 	 *            - Mass of second object
 	 * @param distance
-	 *            - distance between the two
+	 *            - distance between the two masses
 	 * @return
 	 * @see newtonian(double, double, double, double)
 	 */
@@ -37,15 +47,21 @@ public class Gravitation {
 	}
 
 	/**
+	 * <ul><li><b><i>
+	 * newtonian
+	 * </i></b></li></ul><p style="font-family:Courier">
+	 * public double newtonian(double mass1, double mass2, double distance,
+	 * double gravConstant)
+	 * </p><p>
 	 * Calculates from the four criteria, the total gravitational attraction
-	 * between the two objects.
+	 * between the two objects.</p>
 	 * 
 	 * @param mass1
 	 *            - Mass of first object
 	 * @param mass2
 	 *            - Mass of second object
 	 * @param distance
-	 *            - distance between the two
+	 *            - distance between the two masses
 	 * @param gravConstant
 	 *            - the gravitational constant
 	 * @return
@@ -53,7 +69,7 @@ public class Gravitation {
 	public double newtonian(double mass1, double mass2, double distance,
 			double gravConstant) {
 		double newtons = gravConstant
-				* ((mass1 * mass2) / Math.pow(distance, 2));
+				* ( (mass1 * mass2) / (distance * distance) );
 		return newtons;
 	}
 
