@@ -3,7 +3,7 @@ package javapy.maths;
 /**
  * Methods with relation to sequences should go here.
  */
-public class sequences {
+public class Sequences {
 	// TODO Regression
 
 	/**
