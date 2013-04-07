@@ -30,7 +30,11 @@ public class Algebra {
 	}
 
 	/**
-	 * Pythagorean theorem method.
+	 * <strong><em>
+	 * <Ul><li>pythagThrm</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double pythagThrm(double legA, double legB, boolean unknownHypotenuse)</p>
+	 * <p>Pythagorean theorem method.</p>
 	 * 
 	 * @author ifly6
 	 * @param legA
