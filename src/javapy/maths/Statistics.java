@@ -8,9 +8,13 @@ import java.util.ArrayList;
 public class Statistics {
 
 	/**
-	 * Method for the calculation of standard deviation. Takes an array of
+	 * <strong><em>
+	 * <Ul><li>standardDeviation</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double standardDeviation(double[] population)</p>
+	 * <p>Method for the calculation of standard deviation. Takes an array of
 	 * doubles and processes it to spit out a double, which is the standard
-	 * deviation of the data set.
+	 * deviation of the data set.</p>
 	 * 
 	 * @author ifly6
 	 * @return Standard deviation of the data set given.
@@ -50,15 +54,19 @@ public class Statistics {
 	}
 
 	/**
-	 * Calculates Chi Squared. Takes a multi-dimensional array of doubles, and
-	 * returns the Chi squared of them.
+	 * <strong><em>
+	 * <Ul><li>chiSquared</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double chiSquared(double[][] observed)</p>
+	 * <p>Calculates Chi Squared. Takes a multi-dimensional array of doubles, and
+	 * returns the Chi squared of them.</p>
 	 * 
 	 * @author ncolaprete
 	 * 
-	 * @param Matrix
-	 *            of double values
+	 * @param observed -
+	 *            Matrix of double values
 	 * 
-	 * @return Chi squared of the inputed values
+	 * @return Chi squared of the inputted values
 	 */
 	public double chiSquared(double[][] observed) {
 		double[] hTotals = new double[observed.length];
@@ -103,11 +111,16 @@ public class Statistics {
 	}
 	
 	/**
-	 * Takes a matrix of doubles and returns the calculated F-test values
+	 * <strong><em>
+	 * <Ul><li>ANOVA</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double ANOVA(double[]][] data)</p>
+	 * <p>Takes a matrix of doubles and returns the calculated F-test values</p>
 	 * 
 	 * @author ncolaprete
-	 * @param data to do the test on
-	 * @return F value
+	 * @param data -
+	 * 				Matrix to do the test on.
+	 * @return F-test value of the given dataset.
 	 */
 	public double ANOVA(double[][] data) {
 		

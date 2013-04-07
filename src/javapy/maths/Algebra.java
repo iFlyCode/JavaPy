@@ -4,9 +4,13 @@ package javapy.maths;
  * Methods related to Algebra should go here.
  */
 public class Algebra {
-
+	
 	/**
-	 * Method does quadratic formula.
+	 * <strong><em>
+	 * <Ul><li>quadForm</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double[] quadForm(double a, double b, double c)</p>
+	 * <p>Method that does the quadratic formula.</p>
 	 * 
 	 * @param a
 	 *            - Coefficient of x^2
