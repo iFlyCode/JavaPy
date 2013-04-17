@@ -204,4 +204,50 @@ public class Statistics {
 		
 	}
 	
+	/**
+	 * <strong><em>
+	 * <Ul><li>twoTTest</ul></li>
+	 * </em></strong>
+	 * <p style="font-family:Courier">public double twoTTest(double[] observed, double[] expected)</p>
+	 * <p>Takes a two double arrays of observed and expected values and calculates the
+	 * T-Test result between them.</p>
+	 * <p><i>
+	 * Note that if one sample is larger than the other, it will be trimmed down to the smaller's size.
+	 * </i></p>
+	 * 
+	 * @author ncolaprete
+	 * @param observed - double array of observed values
+	 * @param expected - double array of expected values
+	 * @return 2-Sample T-Test result
+	 */
+	public static double twoTTest(double[] observed, double[] expected) {
+		
+		// Trimming the appropriate arrays if they are in need of it
+		if (observed.length > expected.length) {
+			double[] newArr = new double[expected.length];
+			for (int i=0;i<expected.length;i++) {
+				newArr[i] = observed[i];
+			}
+			observed = newArr;
+		} else if (observed.length < expected.length) {
+			double[] newArr = new double[observed.length];
+			for (int i=0;i<observed.length;i++) {
+				newArr[i] = expected[i];
+			}
+			expected = newArr;
+		}
+		
+		//Calculating the T-Test value
+		double[] step_vals = new double[observed.length];
+		for (int i=0;i<observed.length;i++) {
+			step_vals[i] = Math.pow(expected[i] - observed[i], 2) / expected[i];
+		}
+		double to_sender = 0;
+		for (int i=0;i<step_vals.length;i++) {
+			to_sender += step_vals[i];
+		}
+		return to_sender;
+		
+	}
+	
 }
