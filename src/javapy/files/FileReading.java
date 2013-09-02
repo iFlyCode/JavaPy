@@ -1,5 +1,6 @@
 package javapy.files;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -13,12 +14,15 @@ import java.util.Scanner;
 public class FileReading {
 
 	/**
-	 * <ul><li><b><i>
-	 * readFile
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> readFile </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String[] readFile(String file) throws FileNotFoundException
-	 * </p><p>
-	 * Reads the file, puts it into an Array, by the line number = index.</p>
+	 * </p>
+	 * <p>
+	 * Reads the file, puts it into an Array, by the line number = index.
+	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param file
@@ -38,25 +42,27 @@ public class FileReading {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * readLine
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> readLine </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String readLine(String file, int line)
-	 * </p><p>
+	 * </p>
+	 * <p>
 	 * Method to look inside a file for a certain line, and return the contents
-	 * of that line.</p>
+	 * of that line.
+	 * </p>
 	 * 
 	 * @param file
 	 *            - The file in question
 	 * @param line
 	 *            - The line in question in the File
-	 * @return String with the contents of the line in question, 
-	 * 			but a blank string if the line is longer than
-	 * 			the file
+	 * @return String with the contents of the line in question, but a blank
+	 *         string if the line is longer than the file
 	 * @throws FileNotFoundException
 	 * @author ncolaprete
 	 */
-	public String readLine(String file, int line) throws FileNotFoundException {
+	public String readLine(File file, int line) throws FileNotFoundException {
 
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
@@ -73,13 +79,16 @@ public class FileReading {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * searchFile
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> searchFile </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public int[] searchFile(String file, String keyword)
-	 * </p><p>
+	 * </p>
+	 * <p>
 	 * A complicated method to search through a file for instances of a certain
-	 * String inside that file.</p>
+	 * String inside that file.
+	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param file

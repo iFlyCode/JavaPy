@@ -14,12 +14,15 @@ import java.nio.channels.ReadableByteChannel;
 public class WebTxt {
 
 	/**
-	 * <ul><li><b><i>
-	 * download
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public void download(String urlFrom, String directory) throws IOException
-	 * </p><p>
-	 * Downloads a file from a URL, then places it into a folder.</p>
+	 * <ul>
+	 * <li><b><i> download </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
+	 * public void download(URL website, File directory) throws IOException
+	 * </p>
+	 * <p>
+	 * Downloads a file from a URL, then places it into a folder.
+	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
@@ -28,8 +31,7 @@ public class WebTxt {
 	 *            - the place you're putting the file
 	 * @throws IOException
 	 */
-	public void download(String urlFrom, String directory) throws IOException {
-		URL website = new URL(urlFrom);
+	public void download(URL website, File directory) throws IOException {
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		FileOutputStream fos = new FileOutputStream(directory);
 		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
@@ -37,13 +39,16 @@ public class WebTxt {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * readNetPage
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> readNetPage </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String readNetPage(String urlFrom) throws IOException
-	 * </p><p>
+	 * </p>
+	 * <p>
 	 * Reads the contents of a file online. This will return the <b>pure</b> raw
-	 * text form of the file, with no formatting.</p>
+	 * text form of the file, with no formatting.
+	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
@@ -51,21 +56,23 @@ public class WebTxt {
 	 * @return String with contents of file.
 	 * @throws IOException
 	 */
-	public String readNetPage(String urlFrom) throws IOException {
-		URL website = new URL(urlFrom);
+	public String readNetPage(URL website) throws IOException {
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		String contents = rbc.toString();
 		return contents;
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * newInetFile
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> newInetFile </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public File newInetFile(String urlFrom, String directory)
-	 * </p><p>
+	 * </p>
+	 * <p>
 	 * Convenience method to create a new file based off downloaded data from
-	 * the Internet.</p>
+	 * the Internet.
+	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param urlFrom
@@ -75,15 +82,12 @@ public class WebTxt {
 	 * @return File where the data was placed.
 	 * @throws IOException
 	 */
-	public File newInetFile(String urlFrom, String directory)
-			throws IOException {
-		URL website = new URL(urlFrom);
+	public File newInetFile(URL website, File directory) throws IOException {
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		FileOutputStream fos = new FileOutputStream(directory);
 		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
 		fos.close();
-
-		return new File(directory);
+		return directory;
 	}
 
 }
