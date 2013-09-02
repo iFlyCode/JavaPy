@@ -11,7 +11,7 @@ import java.util.Scanner;
  * information about what was read. There should be no methods which actually
  * CHANGE the file inside this class.
  */
-public class FileReading {
+public class ReaderPy {
 
 	/**
 	 * <ul>

@@ -11,7 +11,7 @@ import java.util.Scanner;
  * The place for methods which involve a file, and involve the changing of the
  * contents of that file.
  */
-public class FileWriting {
+public class WriterPy {
 
 	/**
 	 * <ul>
