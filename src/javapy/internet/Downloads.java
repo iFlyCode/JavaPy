@@ -8,10 +8,10 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 /**
- * These are methods which all pertain to getting a text return from a web page.
- * There should be no unrelated methods here.
+ * These are methods which all pertain to getting a text return from a web page. There should be no unrelated methods
+ * here.
  */
-public class WebPy {
+public class Downloads {
 
 	/**
 	 * <ul>
@@ -21,7 +21,7 @@ public class WebPy {
 	 * public void download(URL website, File directory) throws IOException
 	 * </p>
 	 * <p>
-	 * Downloads a file from a URL, then places it into a folder.
+	 * Downloads a file from a URL, then places it into a folder. It does not return the file one is looking for.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -31,7 +31,7 @@ public class WebPy {
 	 *            - the place you're putting the file
 	 * @throws IOException
 	 */
-	public void download(URL website, File directory) throws IOException {
+	protected void download(URL website, File directory) throws IOException {
 		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 		FileOutputStream fos = new FileOutputStream(directory);
 		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
@@ -46,8 +46,8 @@ public class WebPy {
 	 * public String readNetPage(String urlFrom) throws IOException
 	 * </p>
 	 * <p>
-	 * Reads the contents of a file online. This will return the <b>pure</b> raw
-	 * text form of the file, with no formatting.
+	 * Reads the contents of a file online. This will return the <b>pure</b> raw text form of the file, with no
+	 * formatting.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -70,8 +70,9 @@ public class WebPy {
 	 * public File newInetFile(String urlFrom, String directory)
 	 * </p>
 	 * <p>
-	 * Convenience method to create a new file based off downloaded data from
-	 * the Internet.
+	 * Convenience method to create a new file based off downloaded data from the Internet. It tells you where the file
+	 * was placed, so you can directly manipulate it from the program. Differs from .download in that it returns the
+	 * file.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -83,10 +84,7 @@ public class WebPy {
 	 * @throws IOException
 	 */
 	public File newInetFile(URL website, File directory) throws IOException {
-		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		FileOutputStream fos = new FileOutputStream(directory);
-		fos.getChannel().transferFrom(rbc, 0, 1 << 24);
-		fos.close();
+		download(website, directory);
 		return directory;
 	}
 

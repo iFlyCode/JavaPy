@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The place for methods which involve a file, and involve the changing of the
- * contents of that file.
+ * The place for methods which involve a file, and involve the changing of the contents of that file.
  */
 public class WriterPy {
 
@@ -18,13 +17,11 @@ public class WriterPy {
 	 * <li><b><i> replaceInstance </i></b></li>
 	 * </ul>
 	 * <p style="font-family:Courier">
-	 * public void replaceInstance(String file, String findString, String
-	 * replaceString) throws IOException
+	 * public void replaceInstance(String file, String findString, String replaceString) throws IOException
 	 * </p>
 	 * <p>
-	 * Method for reading file, integrating file, replacing instances of a
-	 * certain String and replacing it with another. Should not be used on
-	 * massive files.
+	 * Method for reading file, integrating file, replacing instances of a certain String and replacing it with another.
+	 * Should not be used on massive files.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -33,12 +30,10 @@ public class WriterPy {
 	 * @param findString
 	 *            - the String we're looking for
 	 * @param replaceString
-	 *            - the String you want to replace all instances of the other
-	 *            with.
+	 *            - the String you want to replace all instances of the other with.
 	 * @throws IOException
 	 */
-	public void replaceInstance(String file, String findString,
-			String replaceString) throws IOException {
+	public void replaceInstance(String file, String findString, String replaceString) throws IOException {
 		ArrayList<String> contents = new ArrayList<String>(0);
 
 		FileReader configRead = new FileReader(file);
@@ -64,16 +59,14 @@ public class WriterPy {
 	 * public void write(String directory, String contents) throws IOException
 	 * </p>
 	 * <p>
-	 * Method to write a file with the contents of a provided string. Does not
-	 * provide for appending.
+	 * Method to write a file with the contents of a provided string. Does not provide for appending.
 	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param directory
 	 *            - directory to write to
 	 * @param contents
-	 *            - contents of file that you're going to write to File
-	 *            directory
+	 *            - contents of file that you're going to write to File directory
 	 * @throws IOException
 	 *             Catch this, and do what you want.
 	 */
@@ -92,30 +85,26 @@ public class WriterPy {
 	 * public void write(String directory, String contents, boolean append)
 	 * </p>
 	 * <p>
-	 * Method to write a file with the contents of a provided string. Provides
-	 * the necessary boolean for appending.
+	 * Method to write a file with the contents of a provided string. Provides the necessary boolean for appending.
 	 * </p>
 	 * 
 	 * @author ifly6
 	 * @param directory
 	 *            - directory to write to
 	 * @param contents
-	 *            - contents of file that you're going to write to File
-	 *            directory
+	 *            - contents of file that you're going to write to File directory
 	 * @param append
 	 *            - boolean on whether you're going to append or not.
 	 * @throws IOException
 	 *             Catch this, and do what you want.
 	 */
-	public void write(String directory, String contents, boolean append)
-			throws IOException {
-		if (append == true) {
+	public void write(String directory, String contents, boolean append) throws IOException {
+		if (append) {
 			FileWriter fstream = new FileWriter(directory, append);
 			BufferedWriter out = new BufferedWriter(fstream);
 			out.write(contents);
 			out.close();
-		}
-		if (append == false) {
+		} else if (!append) {
 			write(directory, contents);
 		}
 	}
@@ -128,8 +117,7 @@ public class WriterPy {
 	 * public void writeArray(String file, String[] input)
 	 * </p>
 	 * <p>
-	 * Method for convenience for writing an array of Strings to a file by line.
-	 * It appends, instead of writes over.
+	 * Method for convenience for writing an array of Strings to a file by line. It appends, instead of writes over.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -142,10 +130,12 @@ public class WriterPy {
 	public void writeArray(String file, String[] input) throws IOException {
 		FileWriter fstream = new FileWriter(file);
 		BufferedWriter out = new BufferedWriter(fstream);
+
 		for (String element : input) {
 			out.append(element);
 			out.newLine();
 		}
+
 		out.close();
 	}
 
@@ -154,12 +144,11 @@ public class WriterPy {
 	 * <li><b><i> writeLine </i></b></li>
 	 * </ul>
 	 * <p style="font-family:Courier">
-	 * public void writeLine(String file, String toWrite, int line) throws
-	 * IOException
+	 * public void writeLine(String file, String toWrite, int line) throws IOException
 	 * </p>
 	 * <p>
-	 * Read a file, find the line in question, replace that line, put all that
-	 * into a string, write the string. Gentlemen, we're done here.
+	 * Read a file, find the line in question, replace that line, put all that into a string, write the string.
+	 * Gentlemen, we're done here.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -172,8 +161,7 @@ public class WriterPy {
 	 * @throws IOException
 	 *             Catch this exception. Its caused by FileWriter
 	 */
-	public void writeLine(String file, String toWrite, int line)
-			throws IOException {
+	public void writeLine(String file, String toWrite, int line) throws IOException {
 
 		ArrayList<String> contents = new ArrayList<String>(0);
 

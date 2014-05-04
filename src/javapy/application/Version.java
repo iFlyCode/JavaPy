@@ -22,7 +22,7 @@ public class Version {
 
 		// Throw Exception if Boring
 		if (output.equals("...")) {
-			throw new JPException();
+			throw new JPException("There is no version set.");
 
 		}
 

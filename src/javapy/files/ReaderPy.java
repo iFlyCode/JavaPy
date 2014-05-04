@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Class for methods which relate to reading a file and providing an output, or
- * information about what was read. There should be no methods which actually
- * CHANGE the file inside this class.
+ * Class for methods which relate to reading a file and providing an output, or information about what was read. There
+ * should be no methods which actually CHANGE the file inside this class.
  */
 public class ReaderPy {
 
@@ -29,7 +28,7 @@ public class ReaderPy {
 	 * @return ArrayList with the file inside, Line by Line
 	 * @throws FileNotFoundException
 	 */
-	public String[] readFile(String file) throws FileNotFoundException {
+	public String[] readFile(File file) throws FileNotFoundException {
 		ArrayList<String> contents = new ArrayList<String>(0);
 
 		FileReader configRead = new FileReader(file);
@@ -49,16 +48,14 @@ public class ReaderPy {
 	 * public String readLine(String file, int line)
 	 * </p>
 	 * <p>
-	 * Method to look inside a file for a certain line, and return the contents
-	 * of that line.
+	 * Method to look inside a file for a certain line, and return the contents of that line.
 	 * </p>
 	 * 
 	 * @param file
 	 *            - The file in question
 	 * @param line
 	 *            - The line in question in the File
-	 * @return String with the contents of the line in question, but a blank
-	 *         string if the line is longer than the file
+	 * @return String with the contents of the line in question, but a blank string if the line is longer than the file
 	 * @throws FileNotFoundException
 	 * @author ncolaprete
 	 */
@@ -68,6 +65,8 @@ public class ReaderPy {
 		Scanner scan = new Scanner(configRead);
 		int i = 0;
 		while (scan.hasNextLine()) {
+			/* This is kind of inefficient. It parses the entire file before spitting out the line you want. We can
+			 * totally do better than this. I think we should try something different. */
 			i++;
 			if (line == i) {
 				scan.close();
@@ -86,8 +85,7 @@ public class ReaderPy {
 	 * public int[] searchFile(String file, String keyword)
 	 * </p>
 	 * <p>
-	 * A complicated method to search through a file for instances of a certain
-	 * String inside that file.
+	 * A complicated method to search through a file for instances of a certain String inside that file.
 	 * </p>
 	 * 
 	 * @author ifly6
@@ -95,12 +93,10 @@ public class ReaderPy {
 	 *            - The file we're searching through.
 	 * @param keyword
 	 *            - What we're looking for.
-	 * @return An array of integers with the locations of the string you're
-	 *         looking for appears (by line).
+	 * @return An array of integers with the locations of the string you're looking for appears (by line).
 	 * @throws FileNotFoundException
 	 */
-	public int[] searchFile(String file, String keyword)
-			throws FileNotFoundException {
+	public int[] searchFile(String file, String keyword) throws FileNotFoundException {
 		ArrayList<String> contents = new ArrayList<String>(0);
 		ArrayList<Integer> search = new ArrayList<Integer>(0);
 		FileReader configRead = new FileReader(file);
