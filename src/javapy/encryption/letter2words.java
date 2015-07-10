@@ -57,5 +57,7 @@ public class letter2words {
 				}
 			}
 		}
+
+		scan.close();
 	}
 }

@@ -37,7 +37,8 @@ public class ReaderPy {
 			contents.add(scan.nextLine());
 		}
 		scan.close();
-		return (String[]) contents.toArray();
+
+		return contents.toArray(new String[contents.size()]);
 	}
 
 	/**
