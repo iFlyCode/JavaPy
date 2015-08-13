@@ -3,19 +3,12 @@ package javapy.encryption;
 public class Cipher {
 
 	/**
-	 * <ul><li><b><i>
-	 * append
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public String[] append(String[] list, String item)
-	 * </p><p>
-	 * Takes an an array of strings and item, and inserts the item into the
-	 * first empty index of the array.</p>
-	 * 
+	 * Takes an an array of strings and item, and inserts the item into the first empty index of the array.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * @param list
-	 *            - the array to have the item inserted into
-	 * @param item
-	 *            - the string to insert into the list
+	 * @param list - the array to have the item inserted into
+	 * @param item - the string to insert into the list
 	 * @return list with the item inserted
 	 */
 	public String[] append(String[] list, String item) {
@@ -29,19 +22,19 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * decryptDAS
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> decryptDAS </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String decryptDAS(String plainText, String keyCode)
-	 * </p><p>
-	 * Decrypts one string with the Dynamic Alphabetical Shift Cipher, using
-	 * another string as a keycode.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Decrypts one string with the Dynamic Alphabetical Shift Cipher, using another string as a keycode.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * @param encrypted
-	 *            - the text encrypted
-	 * @param keyCode
-	 *            - the keyCode to the text encrypted
+	 * @param encrypted - the text encrypted
+	 * @param keyCode - the keyCode to the text encrypted
 	 * @return the decrypted text
 	 */
 	public String decryptDAS(String plainText, String keyCode) {
@@ -49,9 +42,8 @@ public class Cipher {
 		plainText = plainText.toUpperCase();
 		keyCode = keyCode.toUpperCase();
 
-		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
-				"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-				"V", "W", "X", "Y", "Z", " " };
+		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+				"Y", "Z", " " };
 		String[][] codedAlphas = new String[keyCode.length()][normAlpha.length];
 		for (int i = 0; i < keyCode.length(); i++) {
 			int start = getIndex(normAlpha, keyCode.substring(i, i + 1));
@@ -64,8 +56,7 @@ public class Cipher {
 		for (int i = 0; i < plainList.length; i++) {
 			for (int e = 0; e < keyCode.length(); e++) {
 				for (int j = 0; j < codedAlphas[e % keyCode.length()].length; j++) {
-					if (plainList[i]
-							.equals(codedAlphas[e % keyCode.length()][j])) {
+					if (plainList[i].equals(codedAlphas[e % keyCode.length()][j])) {
 						codedList[i] = normAlpha[j];
 						break;
 					}
@@ -76,41 +67,42 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * decryptVignere
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> decryptVignere </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String decryptVignere(String encrypted, String keyCode)
-	 * </p><p>
-	 * Decrypts one string with the Vigenère Cipher, using another string as a
-	 * keycode.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Decrypts one string with the Vigenï¿½re Cipher, using another string as a keycode.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param encrypted
-	 *            - the text encrypted
-	 * @param keyCode
-	 *            - the keyCode to the text encrypted
+	 *
+	 * @param encrypted - the text encrypted
+	 * @param keyCode - the keyCode to the text encrypted
 	 * @return the plain-text that was encrypted
 	 */
 	public String decryptVignere(String encrypted, String keyCode) {
 		encrypted = encrypted.toUpperCase();
 		keyCode = keyCode.toUpperCase();
 
-		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
-				"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-				"V", "W", "X", "Y", "Z", " " };
+		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+				"Y", "Z", " " };
 		String[] codedAlpha = new String[normAlpha.length];
 		for (int i = 0; i < codedAlpha.length; i++) {
 			codedAlpha[i] = "";
 		}
 		for (int i = 0; i < keyCode.length(); i++) {
 			String letter = keyCode.substring(i, i + 1);
-			if (!hasString(codedAlpha, letter))
+			if (!hasString(codedAlpha, letter)) {
 				codedAlpha = append(codedAlpha, letter);
+			}
 		}
 		for (int i = 0; i < normAlpha.length; i++) {
-			if (!hasString(codedAlpha, normAlpha[i]))
+			if (!hasString(codedAlpha, normAlpha[i])) {
 				codedAlpha = append(codedAlpha, normAlpha[i]);
+			}
 		}
 		String[] plainList = getListFrom(encrypted);
 		String[] codedList = new String[plainList.length];
@@ -127,20 +119,20 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * encryptDAS
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> encryptDAS </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String encryptDAS(String plainText, String keyCode)
-	 * </p><p>
-	 * Encrypts one string with the Dynamic Alphabetical Shift Cipher, using
-	 * another string as a key code.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Encrypts one string with the Dynamic Alphabetical Shift Cipher, using another string as a key code.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param encrypted
-	 *            - the text to encrypt
-	 * @param keyCode
-	 *            - the keyCode to encrypt the text with
+	 *
+	 * @param encrypted - the text to encrypt
+	 * @param keyCode - the keyCode to encrypt the text with
 	 * @return the encrypted text
 	 */
 	public String encryptDAS(String plainText, String keyCode) {
@@ -148,9 +140,8 @@ public class Cipher {
 		plainText = plainText.toUpperCase();
 		keyCode = keyCode.toUpperCase();
 
-		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
-				"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-				"V", "W", "X", "Y", "Z", " " };
+		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+				"Y", "Z", " " };
 		String[][] codedAlphas = new String[keyCode.length()][normAlpha.length];
 		for (int i = 0; i < keyCode.length(); i++) {
 			int start = getIndex(normAlpha, keyCode.substring(i, i + 1));
@@ -174,20 +165,20 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * encryptVignere
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> encryptVignere </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String encryptVignere(String plainText, String keyCode)
-	 * </p><p>
-	 * Encrypts one string with the Vigenère Cipher, using another string as a
-	 * key code.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Encrypts one string with the Vigenï¿½re Cipher, using another string as a key code.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param plainText
-	 *            - the text we're encrypting
-	 * @param keyCode
-	 *            - the encryption pass-code
+	 *
+	 * @param plainText - the text we're encrypting
+	 * @param keyCode - the encryption pass-code
 	 * @return encrypted text
 	 */
 	public String encryptVignere(String plainText, String keyCode) {
@@ -195,21 +186,22 @@ public class Cipher {
 		plainText = plainText.toUpperCase();
 		keyCode = keyCode.toUpperCase();
 
-		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I",
-				"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-				"V", "W", "X", "Y", "Z", " " };
+		String[] normAlpha = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+				"Y", "Z", " " };
 		String[] codedAlpha = new String[normAlpha.length];
 		for (int i = 0; i < codedAlpha.length; i++) {
 			codedAlpha[i] = "";
 		}
 		for (int i = 0; i < keyCode.length(); i++) {
 			String letter = keyCode.substring(i, i + 1);
-			if (!hasString(codedAlpha, letter))
+			if (!hasString(codedAlpha, letter)) {
 				codedAlpha = append(codedAlpha, letter);
+			}
 		}
 		for (int i = 0; i < normAlpha.length; i++) {
-			if (!hasString(codedAlpha, normAlpha[i]))
+			if (!hasString(codedAlpha, normAlpha[i])) {
 				codedAlpha = append(codedAlpha, normAlpha[i]);
+			}
 		}
 		String[] plainList = getListFrom(plainText);
 		String[] codedList = new String[plainList.length];
@@ -226,43 +218,44 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * getIndex
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> getIndex </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public int getIndex(String[] list, String item)
-	 * </p><p>
-	 * Takes an an array of strings and and item, and returns the index of the
-	 * array that the item occupies, -1 if not in the array.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Takes an an array of strings and and item, and returns the index of the array that the item occupies, -1 if not
+	 * in the array.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param list
-	 *            - the array to check
-	 * @param item
-	 *            - the string to check for
+	 *
+	 * @param list - the array to check
+	 * @param item - the string to check for
 	 * @return index of the item
 	 */
 	public int getIndex(String[] list, String item) {
 		for (int i = 0; i < list.length; i++) {
-			if (list[i].equalsIgnoreCase(item)) {
-				return i;
-			}
+			if (list[i].equalsIgnoreCase(item)) { return i; }
 		}
 		return -1;
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * getListFrom
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> getListFrom </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String[] getListFrom(String inStr)
-	 * </p><p>
-	 * Takes a string, and returns an array of the strings' letters.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Takes a string, and returns an array of the strings' letters.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param inStr
-	 *            - the string
+	 *
+	 * @param inStr - the string
 	 * @return array of letters
 	 */
 	public String[] getListFrom(String inStr) {
@@ -274,46 +267,45 @@ public class Cipher {
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * hasString
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> hasString </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public boolean hasString(String[] list, String item)
-	 * </p><p>
-	 * Takes an an array of strings and and item, and returns true if that array
-	 * has the item in it.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Takes an an array of strings and and item, and returns true if that array has the item in it.
+	 * </p>
+	 *
 	 * @author ncolaprete
-	 * 
-	 * @param list
-	 *            - the array to check
-	 * @param item
-	 *            - the string to check for
+	 *
+	 * @param list - the array to check
+	 * @param item - the string to check for
 	 * @return if the array has the item
 	 */
 	public boolean hasString(String[] list, String item) {
 		for (String s : list) {
 			if (!s.isEmpty()) {
-				if (s.equalsIgnoreCase(item)) {
-					return true;
-				}
+				if (s.equalsIgnoreCase(item)) { return true; }
 			}
 		}
 		return false;
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * seal
-	 * </i></b></li></ul><p style="font-family:Courier">
+	 * <ul>
+	 * <li><b><i> seal </i></b></li>
+	 * </ul>
+	 * <p style="font-family:Courier">
 	 * public String seal(String[] inList)
-	 * </p><p>
-	 * Takes an array of strings, and returns a string of the items in the list
-	 * concatenated together.</p>
-	 * 
+	 * </p>
+	 * <p>
+	 * Takes an array of strings, and returns a string of the items in the list concatenated together.
+	 * </p>
+	 *
 	 * @author ncolaprete
 	 * @author ifly6
-	 * @param inList
-	 *            - the array of strings
+	 * @param inList - the array of strings
 	 * @return concatenated string
 	 */
 	public String seal(String[] inList) {

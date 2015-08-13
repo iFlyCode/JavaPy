@@ -1,7 +1,11 @@
 package javapy.maths;
 
 /**
- * Methods which perform statistical analysis should go here.
+ * Functions with special reference to statistics are in this class. All elements of the class are static as this class
+ * should not be 'constructed'.
+ *
+ * @author ifly6
+ * @author ncolaprete
  */
 public class Statistics {
 

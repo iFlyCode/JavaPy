@@ -1,7 +1,11 @@
 package javapy.maths;
 
 /**
- * Methods with relation to sequences should go here.
+ * Functions with special reference to sequences are in this class. All elements of the class are static as this class
+ * should not be 'constructed'.
+ *
+ * @author ifly6
+ * @author ncolaprete
  */
 public class Sequences {
 	// TODO Regression

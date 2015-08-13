@@ -3,7 +3,8 @@ package javapy.util;
 import java.util.Collection;
 
 /**
- * This class contains static methods which are used to manipulate arrays.
+ * This class contains static methods which are used to manipulate arrays in a more helpful manner than provided by the
+ * Java library. Everything here is static, since there is no object to be created by <code>JPArrayUtils</code>.
  *
  * @author ifly6
  */
