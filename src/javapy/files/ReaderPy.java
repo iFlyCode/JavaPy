@@ -1,10 +1,13 @@
 package javapy.files;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import javapy.util.JPArrayUtils;
 
 /**
  * Class for methods which relate to reading a file and providing an output, or information about what was read. There
@@ -12,70 +15,77 @@ import java.util.Scanner;
  */
 public class ReaderPy {
 
+	FileReader reader;
+
 	/**
-	 * <ul>
-	 * <li><b><i> readFile </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public String[] readFile(String file) throws FileNotFoundException
-	 * </p>
-	 * <p>
-	 * Reads the file, puts it into an Array, by the line number = index.
-	 * </p>
-	 * 
-	 * @author ifly6
-	 * @param file
-	 * @return ArrayList with the file inside, Line by Line
-	 * @throws FileNotFoundException
+	 * Constructs the reader based around a certain file.
+	 *
+	 * @param file to be read
+	 * @throws FileNotFoundException if the file cannot be found
 	 */
-	public String[] readFile(File file) throws FileNotFoundException {
-		ArrayList<String> contents = new ArrayList<String>(0);
-
-		FileReader configRead = new FileReader(file);
-		Scanner scan = new Scanner(configRead);
-		while (scan.hasNextLine()) {
-			contents.add(scan.nextLine());
-		}
-		scan.close();
-
-		return contents.toArray(new String[contents.size()]);
+	public ReaderPy(File file) throws FileNotFoundException {
+		reader = new FileReader(file);
 	}
 
 	/**
-	 * <ul>
-	 * <li><b><i> readLine </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public String readLine(String file, int line)
-	 * </p>
-	 * <p>
-	 * Method to look inside a file for a certain line, and return the contents of that line.
-	 * </p>
-	 * 
-	 * @param file
-	 *            - The file in question
-	 * @param line
-	 *            - The line in question in the File
-	 * @return String with the contents of the line in question, but a blank string if the line is longer than the file
-	 * @throws FileNotFoundException
-	 * @author ncolaprete
+	 * Constructs the readers based around a certain file path.
+	 *
+	 * @param path to the file to be read
+	 * @throws FileNotFoundException if the path's file cannot be found
 	 */
-	public String readLine(File file, int line) throws FileNotFoundException {
+	public ReaderPy(String path) throws FileNotFoundException {
+		this(new File(path));
+	}
 
-		FileReader configRead = new FileReader(file);
-		Scanner scan = new Scanner(configRead);
-		int i = 0;
-		while (scan.hasNextLine()) {
-			/* This is kind of inefficient. It parses the entire file before spitting out the line you want. We can
-			 * totally do better than this. I think we should try something different. */
-			i++;
-			if (line == i) {
-				scan.close();
-				return scan.nextLine();
+	/**
+	 * Reads the file, puts it into a <code>String[]</code> based on new lines.
+	 *
+	 * @author ifly6
+	 * @param file
+	 * @return ArrayList with the file inside, Line by Line
+	 * @throws IOException if there is a problem in reading the file
+	 */
+	public String[] readToArray() throws IOException {
+		ArrayList<String> contents = new ArrayList<String>(0);
+
+		String line;
+		BufferedReader bufferedReader = new BufferedReader(reader);
+		while ((line = bufferedReader.readLine()) != null) {
+			contents.add(line);
+		}
+		bufferedReader.close();
+
+		return (String[]) JPArrayUtils.toArray(contents);
+	}
+
+	/**
+	 * Looks for the contents of a certain line in the file.
+	 *
+	 * @param file where the scanning is occurring
+	 * @param line which is requested
+	 * @return <code>String</code> with the contents of the line in question, but a blank string if the line is longer
+	 *         than the file
+	 * @author ncolaprete
+	 * @author ifly6
+	 * @throws IOException
+	 */
+	public String readLine(File file, int line) throws IOException {
+
+		int lineNum = 0;
+		String readLine;
+		BufferedReader bufferedReader = new BufferedReader(reader);
+
+		while ((readLine = bufferedReader.readLine()) != null) {
+			lineNum++;
+
+			if (lineNum == line) {
+				bufferedReader.close();
+				return readLine;
 			}
 		}
-		scan.close();
-		return "";
+
+		bufferedReader.close();
+		return null;
 	}
 
 	/**
@@ -88,38 +98,44 @@ public class ReaderPy {
 	 * <p>
 	 * A complicated method to search through a file for instances of a certain String inside that file.
 	 * </p>
-	 * 
+	 *
 	 * @author ifly6
-	 * @param file
-	 *            - The file we're searching through.
-	 * @param keyword
-	 *            - What we're looking for.
+	 * @param file - The file we're searching through.
+	 * @param keyword - What we're looking for.
 	 * @return An array of integers with the locations of the string you're looking for appears (by line).
-	 * @throws FileNotFoundException
+	 * @throws IOException if there is a problem reading the file
 	 */
-	public int[] searchFile(String file, String keyword) throws FileNotFoundException {
-		ArrayList<String> contents = new ArrayList<String>(0);
-		ArrayList<Integer> search = new ArrayList<Integer>(0);
-		FileReader configRead = new FileReader(file);
-		Scanner scan = new Scanner(configRead);
-		while (scan.hasNextLine()) {
-			contents.add(scan.nextLine());
-		}
-		scan.close();
-		for (int x = 0; x < contents.size(); x++) {
-			String evaluate = contents.get(x);
+	public int[] searchFile(String keyword) throws IOException {
+		ArrayList<Integer> search = new ArrayList<Integer>();
+
+		String[] contents = this.readToArray();
+
+		for (int i = 0; i < contents.length; i++) {
+			String evaluate = contents[i];
 			if (evaluate.contains(keyword)) {
-				search.add(x);
+				search.add(i);
 			}
 		}
+
 		String[] strings = (String[]) search.toArray();
 
 		// Convert ArrayList to int[]
-		int[] locations = new int[search.size()];
+		Integer[] locations = search.toArray(new Integer[search.size()]);
 		for (int x = 0; x < strings.length; x++) {
 			locations[x] = Integer.getInteger(strings[x]);
 		}
 
-		return locations;
+		return JPArrayUtils.toPrimitiveArray(locations);
+	}
+
+	/**
+	 * Gets the length of the file in lines.
+	 *
+	 * @return an <code>int</code> containing the number of lines in the file
+	 * @throws IOException
+	 */
+	public int getLenth() throws IOException {
+		String[] file = this.readToArray();
+		return file.length;
 	}
 }

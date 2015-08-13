@@ -1,76 +1,51 @@
 package javapy.physics;
 
+import javapy.physics.units.Kilogram;
+import javapy.physics.units.Metre;
+import javapy.physics.units.Newton;
+
 /**
- * Methods relating to the physics concept of Gravitation should go here, sorted
- * by which parameter in which they apply, like Newtonian, etc.
+ * Methods relating to the physics concept of Gravitation should go here, sorted by which parameter in which they apply,
+ * like Newtonian, etc.
  */
 public class Gravitation {
 
+	public static final double gravitationalConstant = 6.67384E-11;
+	public static final double seaLevelGravity = 9.8196;
+
 	/**
-	 * <ul><li><b><i>
-	 * earth
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public double earth(double mass)
-	 * </p><p>
-	 * Calculate the Newtons of an object falling in standard Paris gravity.</p>
-	 * 
-	 * @param mass
-	 *            - Mass of the object in question.
-	 * @return Amount of force of object, in Newtons.
+	 * Calculates the force of an object falling in standard Earth gravity.
+	 *
+	 * @param mass of the object in question.
+	 * @return the force in Newtons exerted by the object in Earth sea-level gravity
 	 */
-	public double earth(double mass) {
-		return mass * 9.81;
+	public static Newton earth(Kilogram mass) {
+		return new Newton(mass.getValue() * 9.8196);
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * newtonian
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public double newtonian(double mass1, double mass2, double distance)
-	 * </p><p>
-	 * This is a caller for the other Newtonian gravitation class - just with
-	 * the gravitational constant hard-coded into the programme.</p>
-	 * 
-	 * @param mass1
-	 *            - Mass of first object
-	 * @param mass2
-	 *            - Mass of second object
-	 * @param distance
-	 *            - distance between the two masses
-	 * @return
-	 * @see newtonian(double, double, double, double)
+	 * Calculates the force exerted by an object by another with the standard gravitational constant.
+	 *
+	 * @param mass1 of first object
+	 * @param mass2 of second object
+	 * @param distance between the two masses
+	 * @return the force in Newtons exerted by the object in Earth sea-level gravity
 	 */
-	public double newtonian(double mass1, double mass2, double distance) {
-		// Gravitational Constant = 6.6738480 E-11
-		double newtons = newtonian(mass1, mass2, distance, 6.6738480E-11);
-		return newtons;
+	public static Newton newtonian(Kilogram mass1, Kilogram mass2, Metre distance) {
+		return newtonian(mass1, mass2, distance, gravitationalConstant);
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * newtonian
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public double newtonian(double mass1, double mass2, double distance,
-	 * double gravConstant)
-	 * </p><p>
-	 * Calculates from the four criteria, the total gravitational attraction
-	 * between the two objects.</p>
-	 * 
-	 * @param mass1
-	 *            - Mass of first object
-	 * @param mass2
-	 *            - Mass of second object
-	 * @param distance
-	 *            - distance between the two masses
-	 * @param gravConstant
-	 *            - the gravitational constant
+	 * Calculates the force exerted by an object by another with a custom gravitational constant.
+	 *
+	 * @param mass1 of first object
+	 * @param mass2 of second object
+	 * @param distance - distance between the two masses
+	 * @param gravConstant - the gravitational constant
 	 * @return
 	 */
-	public double newtonian(double mass1, double mass2, double distance,
-			double gravConstant) {
-		double newtons = gravConstant
-				* ( (mass1 * mass2) / (distance * distance) );
-		return newtons;
+	public static Newton newtonian(Kilogram mass1, Kilogram mass2, Metre distance, double gravConstant) {
+		double newtons = gravConstant * ((mass1.getValue() * mass2.getValue()) / (Math.pow(distance.getValue(), 2)));
+		return new Newton(newtons);
 	}
-
 }

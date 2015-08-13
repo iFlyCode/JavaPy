@@ -1,181 +1,133 @@
 package javapy.files;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javapy.util.JPArrayUtils;
+
 /**
  * The place for methods which involve a file, and involve the changing of the contents of that file.
  */
 public class WriterPy {
 
-	/**
-	 * <ul>
-	 * <li><b><i> replaceInstance </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public void replaceInstance(String file, String findString, String replaceString) throws IOException
-	 * </p>
-	 * <p>
-	 * Method for reading file, integrating file, replacing instances of a certain String and replacing it with another.
-	 * Should not be used on massive files.
-	 * </p>
-	 * 
-	 * @author ifly6
-	 * @param file
-	 *            - file in question
-	 * @param findString
-	 *            - the String we're looking for
-	 * @param replaceString
-	 *            - the String you want to replace all instances of the other with.
-	 * @throws IOException
-	 */
-	public void replaceInstance(String file, String findString, String replaceString) throws IOException {
-		ArrayList<String> contents = new ArrayList<String>(0);
+	File file;
+	BufferedWriter writer;
 
+	/**
+	 * Constructs <code>WriterPy</code> with a certain file.
+	 *
+	 * @param givenFile the relevant file
+	 * @throws IOException if there is a problem in constructing the BufferedWriter
+	 */
+	public WriterPy(File givenFile) throws IOException {
+		writer = new BufferedWriter(new FileWriter(file));
+		file = givenFile;
+	}
+
+	/**
+	 * Constructs <code>WriterPy</code> with a certain path.
+	 *
+	 * @param givenFile the path to the relevant file
+	 * @throws IOException if there is a problem in constructing the BufferedWriter
+	 */
+	public WriterPy(String path) throws IOException {
+		this(new File(path));
+	}
+
+	/**
+	 * Method for reading file, integrating file, replacing instances of a certain <code>String</code> and replacing it
+	 * with another. Should not be used on massive files.
+	 *
+	 * @author ifly6
+	 * @param file in question
+	 * @param findString is the <code>String</code> we're looking for
+	 * @param replaceString is the <code>String</code> you want to replace all instances of the <code>findString</code>
+	 *            with.
+	 * @throws IOException if there is an error in reading or writing the <code>String</code>
+	 */
+	public void replaceInstance(String findString, String replaceString) throws IOException {
+		ArrayList<String> contents = new ArrayList<String>(0);
 		FileReader configRead = new FileReader(file);
 		Scanner scan = new Scanner(configRead);
+
 		while (scan.hasNextLine()) {
 			contents.add(scan.nextLine());
 		}
 		scan.close();
-		String newContents = contents.toString();
-		String replaced = newContents.replaceAll(findString, replaceString);
 
-		FileWriter fstream = new FileWriter(file);
-		BufferedWriter out = new BufferedWriter(fstream);
-		out.write(replaced);
-		out.close();
+		String replaced = JPArrayUtils.toString(contents, '\n').replaceAll(findString, replaceString);
+
+		writer.write(replaced);
+		writer.close();
 	}
 
 	/**
-	 * <ul>
-	 * <li><b><i> write </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public void write(String directory, String contents) throws IOException
-	 * </p>
-	 * <p>
-	 * Method to write a file with the contents of a provided string. Does not provide for appending.
-	 * </p>
-	 * 
+	 * Method to write a file with the contents of a provided <code>String</code>. Does not provide for appending.
+	 *
 	 * @author ifly6
-	 * @param directory
-	 *            - directory to write to
-	 * @param contents
-	 *            - contents of file that you're going to write to File directory
-	 * @throws IOException
-	 *             Catch this, and do what you want.
+	 * @param contents of file that you're going to write to <code>File</code> directory
+	 * @throws IOException if there is a problem in writing the <code>String</code>
 	 */
-	public void write(String directory, String contents) throws IOException {
-		FileWriter fstream = new FileWriter(directory);
-		BufferedWriter out = new BufferedWriter(fstream);
-		out.write(contents);
-		out.close();
+	public void write(String contents) throws IOException {
+		writer.write(contents);
+		writer.close();
 	}
 
 	/**
-	 * <ul>
-	 * <li><b><i> write </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public void write(String directory, String contents, boolean append)
-	 * </p>
-	 * <p>
-	 * Method to write a file with the contents of a provided string. Provides the necessary boolean for appending.
-	 * </p>
-	 * 
+	 * Method to write a file with the contents of a provided <code>String</code>. Provides the necessary boolean for
+	 * appending.
+	 *
 	 * @author ifly6
-	 * @param directory
-	 *            - directory to write to
-	 * @param contents
-	 *            - contents of file that you're going to write to File directory
-	 * @param append
-	 *            - boolean on whether you're going to append or not.
-	 * @throws IOException
-	 *             Catch this, and do what you want.
+	 * @param contents of file to write to file
+	 * @param append is a <code>boolean</code> which determines whether to append or not
+	 * @throws IOException if there is a problem in writing to file
 	 */
-	public void write(String directory, String contents, boolean append) throws IOException {
+	public void write(String contents, boolean append) throws IOException {
 		if (append) {
-			FileWriter fstream = new FileWriter(directory, append);
-			BufferedWriter out = new BufferedWriter(fstream);
-			out.write(contents);
-			out.close();
+			writer = new BufferedWriter(new FileWriter(file, append));
+			writer.write(contents);
+			writer.close();
 		} else if (!append) {
-			write(directory, contents);
+			write(contents);
 		}
 	}
 
 	/**
-	 * <ul>
-	 * <li><b><i> writeArray </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public void writeArray(String file, String[] input)
-	 * </p>
-	 * <p>
-	 * Method for convenience for writing an array of Strings to a file by line. It appends, instead of writes over.
-	 * </p>
-	 * 
+	 * Method for convenience for writing an <code>String[]</code> to a file by line.
+	 *
 	 * @author ifly6
-	 * @param file
-	 *            - The file to write to.
-	 * @param input
-	 *            - The String Array given to write to lines by index.
-	 * @throws IOException
+	 * @param file to written to
+	 * @param array to write to file
+	 * @throws IOException if there is a problem in writing the file
 	 */
-	public void writeArray(String file, String[] input) throws IOException {
-		FileWriter fstream = new FileWriter(file);
-		BufferedWriter out = new BufferedWriter(fstream);
-
-		for (String element : input) {
-			out.append(element);
-			out.newLine();
-		}
-
-		out.close();
+	public void writeArray(String[] array) throws IOException {
+		this.write(JPArrayUtils.toString(array, '\n'));
 	}
 
 	/**
-	 * <ul>
-	 * <li><b><i> writeLine </i></b></li>
-	 * </ul>
-	 * <p style="font-family:Courier">
-	 * public void writeLine(String file, String toWrite, int line) throws IOException
-	 * </p>
-	 * <p>
-	 * Read a file, find the line in question, replace that line, put all that into a string, write the string.
-	 * Gentlemen, we're done here.
-	 * </p>
-	 * 
+	 * Reads a file, finds the line in question, replaces that line, writes the line.
+	 *
 	 * @author ifly6
-	 * @param file
-	 *            - The file in question
-	 * @param toWrite
-	 *            - What you're going to write to that line
-	 * @param line
-	 *            - The line in question
-	 * @throws IOException
-	 *             Catch this exception. Its caused by FileWriter
+	 * @param file in question
+	 * @param toWrite new contents of the line
+	 * @param line number in question
+	 * @throws IOException if something goes wrong in writing or if the line specified is greater than the number of
+	 *             lines in the file
 	 */
-	public void writeLine(String file, String toWrite, int line) throws IOException {
+	public void writeLine(String toWrite, int line) throws IOException {
+		ReaderPy readerPy = new ReaderPy(file);
 
-		ArrayList<String> contents = new ArrayList<String>(0);
-
-		FileReader configRead = new FileReader(file);
-		Scanner scan = new Scanner(configRead);
-		contents.add(scan.nextLine()); // Input into ArrayList
-		contents.set(line, toWrite); // Find and set Line to String
-
-		String rewrite = contents.toString(); // Integrate into String
-		FileWriter fstream = new FileWriter(file);
-		BufferedWriter out = new BufferedWriter(fstream);
-		out.write(rewrite); // Write String
-		out.close();
-		scan.close();
+		if (line < readerPy.getLenth()) {
+			String[] file = readerPy.readToArray();
+			file[line] = toWrite;
+			this.writeArray(file);
+		} else {
+			throw new IOException("Line specified is greater than length of file");
+		}
 	}
-
 }

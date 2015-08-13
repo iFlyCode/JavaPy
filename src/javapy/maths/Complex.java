@@ -1,128 +1,119 @@
 package javapy.maths;
 
+/**
+ * The Complex class represents complex numbers. Complex instances are constant; their values cannot be changed after
+ * they are created and are hence, immutable.
+ *
+ * @author ncolaprete
+ * @author ifly6
+ */
 public class Complex {
-  
-	double real;
-	double imaginary;
-	Complex(double real_in, double imaginary_in) {
-		this.real = real_in;
-		this.imaginary = imaginary_in;
+
+	private final double real;
+	private final double imaginary;
+
+	Complex(double Real, double Imaginary) {
+		this.real = Real;
+		this.imaginary = Imaginary;
 	}
-	
-	public String toString() {
-		if (this.imaginary == 0)
-			return this.real + "";
-		if (this.real == 0)
-			return this.imaginary + "i";
-		if (this.imaginary < 0)
-			return this.real + this.imaginary + "i";
-		return this.real + "+" + this.imaginary + "i";
-	}
-	
+
 	/**
-	 * <ul><li><b><i>
-	 * toArray
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public double[] toArray()
-	 * </p><p>
-	 * Returns a double array containing the real
-	 * part under index 0 and the imaginary part
-	 * under index 1.</p>
-	 * 
-	 * @return An array instance of the number
+	 * Returns a string representation of the object in the form <code>a + b<i>i</i></code>.
+	 *
+	 * @return the string representation
+	 */
+	@Override public String toString() {
+		if (this.imaginary == 0) {
+			return Double.toString(this.real);
+		} else {
+			if (this.real == 0) { return this.imaginary + "i"; }
+			return this.real + "+" + this.imaginary + "i";
+		}
+	}
+
+	/**
+	 * Returns a double array containing the real part under index 0 and the imaginary part under index 1.
+	 *
+	 * @return An array representation of the number in the form <code>{ real, imaginary }</code>
 	 */
 	public double[] toArray() {
-		return new double[] {this.real, this.imaginary};
+		return new double[] { this.real, this.imaginary };
 	}
-	
+
 	/**
-	 * <ul><li><b><i>
-	 * plus
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public Complex plus(Complex num)
-	 * </p><p>
-	 * Adds this complex number to another one.</p>
+	 * Adds this complex number to another one.
+	 *
 	 * @param num - Complex number to add to.
-	 * @return The sum of the two numbers.
+	 * @return new <code>Complex</code> which is the sum of the two numbers.
 	 */
-	public Complex plus(Complex num) {
+	public Complex add(Complex num) {
 		double realfinal = this.real + num.real;
 		double imagfinal = this.imaginary + num.imaginary;
 		return new Complex(realfinal, imagfinal);
 	}
 
 	/**
-	 * <ul><li><b><i>
-	 * minus
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public Complex minus(Complex num)
-	 * </p><p>
-	 * Subtracts another complex number from this one.</p>
-	 * @param num - Complex number to subtract.
-	 * @return The difference of the two numbers.
+	 * Subtracts this complex number by another one.
+	 *
+	 * @param num - Complex number to subtract from.
+	 * @return new <code>Complex</code> which is the difference of the two numbers.
 	 */
-	public Complex minus(Complex num) {
+	public Complex subtract(Complex num) {
 		double realfinal = this.real - num.real;
 		double imagfinal = this.imaginary - num.imaginary;
 		return new Complex(realfinal, imagfinal);
 	}
-	
 
 	/**
-	 * <ul><li><b><i>
-	 * times
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public Complex times(Complex num)
-	 * </p><p>
-	 * Multiplies this complex number with another one.</p>
+	 * Multiplies this complex number by another one.
+	 *
 	 * @param num - Complex number to multiply with.
-	 * @return The product of the two numbers.
+	 * @return new <code>Complex</code> which is the product of the two numbers.
 	 */
-	public Complex times(Complex num) {
+	public Complex multiply(Complex num) {
 		double re = this.real * num.real;
 		double im = (this.imaginary * num.real) + (num.imaginary * this.real);
 		double imSqrd = (this.imaginary * num.imaginary) * (-1);
 		return new Complex(re + imSqrd, im);
 	}
-	
+
 	/**
-	 * <p style="font-size:16px;color:red"><b>
-	 * NON-FUNCTIONING
-	 * </b></p>
-	 * <ul><li><b><i>
-	 * divBy
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public Complex divBy(Complex num)
-	 * </p><p>
-	 * Returns the quotient of this and another complex
-	 * number.</p>
-	 * @param num - Number to divide by.
-	 * @return null
+	 * Divides this complex number by another one. If it cannot be divided for some reason, then it will return
+	 * <code>null</code>.
+	 *
+	 * @param num - Complex number to divide by.
+	 * @return new <code>Complex</code> which is the quotient of the two numbers.
 	 */
-	public Complex divBy(Complex num) {
-		/*
-		Complex conjugate = new Complex(num.real, num.imaginary*(-1));
-		Complex top = this.times(conjugate);
-		Complex bottom = num.times(conjugate);
-		*/
-		return null;
+	public Complex divide(Complex num) {
+		Complex top = this.multiply(num.conjugate());
+		Complex bottom = num.multiply(num.conjugate());
+
+		if (bottom.imaginary == 0) {
+			return new Complex(top.real / bottom.real, top.imaginary / bottom.real);
+		} else {
+			return null;
+		}
 	}
-	
+
 	/**
-	 * <ul><li><b><i>
-	 * raisedTo
-	 * </i></b></li></ul><p style="font-family:Courier">
-	 * public Complex raisedTo(int power)
-	 * </p><p>
-	 * Returns this complex number raised to an integer power.</p>
-	 * 
-	 * @param power - power to raise to
+	 * Returns the conjugate of the Complex number.
+	 *
+	 * @return the conjugate
+	 */
+	public Complex conjugate() {
+		return new Complex(real, -imaginary);
+	}
+
+	/**
+	 * Returns this complex number raised to an integer power.
+	 *
+	 * @param power to raise to
 	 * @return the number raised to the given power
 	 */
 	public Complex raisedTo(int power) {
 		Complex to_sender = this;
-		for (int i=0;i<power;i++) {
-			to_sender = to_sender.times(to_sender);
+		for (int i = 0; i < power; i++) {
+			to_sender = to_sender.multiply(to_sender);
 		}
 		return to_sender;
 	}
