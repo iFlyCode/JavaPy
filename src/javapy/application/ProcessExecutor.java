@@ -13,6 +13,12 @@ import javapy.util.JPArrayUtils;
  */
 public class ProcessExecutor {
 
+	String[] execCommands = {};
+
+	public ProcessExecutor(String[] commands) {
+		execCommands = commands;
+	}
+
 	/**
 	 * Executes a command line command, then returns the output and error streams inside a String.
 	 *
@@ -21,12 +27,12 @@ public class ProcessExecutor {
 	 * @throws IOException
 	 * @return String with information given by CLI programme in error and out streams.
 	 */
-	public String execReturn(String[] commands) throws IOException {
+	public String execReturn() throws IOException {
 
 		// Array List which we add to, then convert to String
 		final ArrayList<String> total = new ArrayList<String>(0);
 
-		ProcessBuilder builder = new ProcessBuilder(commands);
+		ProcessBuilder builder = new ProcessBuilder(execCommands);
 		Process process = builder.start();
 
 		// Output Stream
@@ -56,8 +62,8 @@ public class ProcessExecutor {
 	 * @param command to be executed, in String[] form.
 	 * @throws IOException if there is a problem in execution
 	 */
-	public void exec(String[] command) throws IOException {
-		ProcessBuilder builder = new ProcessBuilder(command);
+	public void exec() throws IOException {
+		ProcessBuilder builder = new ProcessBuilder(execCommands);
 		builder.start();
 	}
 }
