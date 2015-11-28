@@ -1,3 +1,18 @@
+/* Copyright (c) 2015 Kevin Wong and Nicholas Colaprete
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
+
 package javapy.files;
 
 import java.io.BufferedWriter;
@@ -13,7 +28,7 @@ import javapy.util.JPArrayUtils;
 /**
  * The place for methods which involve a file, and involve the changing of the contents of that file.
  */
-public class WriterPy {
+public class JPWriter {
 
 	File file;
 	BufferedWriter writer;
@@ -24,7 +39,7 @@ public class WriterPy {
 	 * @param givenFile the relevant file
 	 * @throws IOException if there is a problem in constructing the BufferedWriter
 	 */
-	public WriterPy(File givenFile) throws IOException {
+	public JPWriter(File givenFile) throws IOException {
 		writer = new BufferedWriter(new FileWriter(file));
 		file = givenFile;
 	}
@@ -35,7 +50,7 @@ public class WriterPy {
 	 * @param givenFile the path to the relevant file
 	 * @throws IOException if there is a problem in constructing the BufferedWriter
 	 */
-	public WriterPy(String path) throws IOException {
+	public JPWriter(String path) throws IOException {
 		this(new File(path));
 	}
 
@@ -120,7 +135,7 @@ public class WriterPy {
 	 *             lines in the file
 	 */
 	public void writeLine(String toWrite, int line) throws IOException {
-		ReaderPy readerPy = new ReaderPy(file);
+		JPReader readerPy = new JPReader(file);
 
 		if (line < readerPy.getLenth()) {
 			String[] file = readerPy.readToArray();

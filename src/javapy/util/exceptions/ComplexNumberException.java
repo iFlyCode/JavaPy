@@ -13,8 +13,17 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-package javapy.physics.units;
+package javapy.util.exceptions;
 
-public class Meter extends Metre {
+public class ComplexNumberException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
+	public ComplexNumberException() {
+
+	}
+
+	public ComplexNumberException(String reason) {
+		super(reason);
+	}
 }

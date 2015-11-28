@@ -13,8 +13,36 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-package javapy.physics.units;
+package javapy.physics;
 
-public class Meter extends Metre {
+import javapy.physics.units.Unit;
+import javapy.util.exceptions.UnitMismatchException;
 
+public class Units {
+
+	public static Unit add(Unit a, Unit b) throws UnitMismatchException {
+		if (!a.unit.equals(b.unit)) {
+			throw new UnitMismatchException();
+		} else {
+			return new Unit(a.getValue() + b.getValue());
+		}
+	}
+
+	public static Unit subtract(Unit a, Unit b) throws UnitMismatchException {
+		if (!a.unit.equals(b.unit)) {
+			throw new UnitMismatchException();
+		} else {
+			return new Unit(a.getValue() - b.getValue());
+		}
+	}
+
+	/* TODO Find some way to actually doing analysis of the units themselves. I want to multiply Newtons and Metres and
+	 * have Joules come out. Unfortunately, how the hell would I do that? */
+	public static Unit multiply(Unit a, Unit b) {
+		return new Unit(a.getValue() * b.getValue());
+	}
+
+	public static Unit divide(Unit a, Unit b) {
+		return new Unit(a.getValue() / b.getValue());
+	}
 }

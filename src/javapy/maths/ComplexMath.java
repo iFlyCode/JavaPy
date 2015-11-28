@@ -13,8 +13,16 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-package javapy.physics.units;
+package javapy.maths;
 
-public class Meter extends Metre {
+public class ComplexMath {
+
+	public static Complex sqrt(double input) {
+		if (Number.isNegative(input)) {
+			return new Complex(java.lang.Math.sqrt(input), 1);
+		} else {
+			return new Complex(java.lang.Math.sqrt(input), 0);
+		}
+	}
 
 }

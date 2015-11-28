@@ -1,3 +1,18 @@
+/* Copyright (c) 2015 Kevin Wong and Nicholas Colaprete
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
+
 package javapy.maths;
 
 /**
@@ -10,6 +25,23 @@ package javapy.maths;
 public class Statistics {
 
 	/**
+	 * Returns the average of the given set of doubles.
+	 *
+	 * @author ifly6
+	 * @param set is the input set of numbers
+	 * @return the average of the set
+	 */
+	public static double average(double... set) {
+		double sum = 0;
+		for (double element : set) {
+			sum = sum + element;
+		}
+
+		double average = sum / set.length;
+		return average;
+	}
+
+	/**
 	 * Method for the calculation of sample standard deviation. Takes an array of doubles and processes it to spit out a
 	 * double, which is the standard deviation of the set.
 	 *
@@ -19,7 +51,7 @@ public class Statistics {
 	 *            standard deviation for.
 	 */
 	public static double stdDevS(double[] sample) {
-		return Math.sqrt(varianceS(sample));		// Return square root of variance
+		return Math.sqrt(varianceS(sample));
 	}
 
 	/**

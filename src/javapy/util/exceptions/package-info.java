@@ -13,8 +13,9 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-package javapy.physics.units;
-
-public class Meter extends Metre {
-
-}
+/**
+ * This package contains exceptions which will be used by the JavaPy library.
+ *
+ * @author ifly6
+ */
+package javapy.util.exceptions;
