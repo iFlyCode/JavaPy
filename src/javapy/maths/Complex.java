@@ -132,4 +132,13 @@ public class Complex {
 		}
 		return to_sender;
 	}
+
+	/**
+	 * Returns the absolute magnitude of complex number on the imaginary plane.
+	 * 
+	 * @return absolute magnitude, as double
+	 */
+	public double magnitude() {
+		return Math.sqrt(Math.pow(this.real, 2) + Math.pow(this.imaginary, 2));
+	}
 }
