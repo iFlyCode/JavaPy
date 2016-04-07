@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javapy.util.JPArrayUtils;
@@ -82,18 +83,6 @@ public class JPWriter {
 	}
 
 	/**
-	 * Method to write a file with the contents of a provided <code>String</code>. Does not provide for appending.
-	 *
-	 * @author ifly6
-	 * @param contents of file that you're going to write to <code>File</code> directory
-	 * @throws IOException if there is a problem in writing the <code>String</code>
-	 */
-	public void write(String contents) throws IOException {
-		writer.write(contents);
-		writer.close();
-	}
-
-	/**
 	 * Method to write a file with the contents of a provided <code>String</code>. Provides the necessary boolean for
 	 * appending.
 	 *
@@ -110,6 +99,18 @@ public class JPWriter {
 		} else if (!append) {
 			write(contents);
 		}
+	}
+
+	/**
+	 * Method to write a file with the contents of a provided <code>String</code>. Does not provide for appending.
+	 *
+	 * @author ifly6
+	 * @param contents of file that you're going to write to <code>File</code> directory
+	 * @throws IOException if there is a problem in writing the <code>String</code>
+	 */
+	public void write(String contents) throws IOException {
+		writer.write(contents);
+		writer.close();
 	}
 
 	/**
@@ -135,14 +136,18 @@ public class JPWriter {
 	 *             lines in the file
 	 */
 	public void writeLine(String toWrite, int line) throws IOException {
-		JPReader readerPy = new JPReader(file);
 
-		if (line < readerPy.getLenth()) {
-			String[] file = readerPy.readToArray();
-			file[line] = toWrite;
-			this.writeArray(file);
+		JPFileReader readerPy = new JPFileReader(file);
+		if (line < readerPy.countLines()) {
+
+			List<String> fileList = readerPy.readAllLines();
+			fileList.set(line, toWrite);
+
+			String[] fileArray = (String[]) JPArrayUtils.toArray(fileList);
+			this.writeArray(fileArray);
+
 		} else {
-			throw new IOException("Line specified is greater than length of file");
+			throw new ArrayIndexOutOfBoundsException("Line specified is greater than length of file");
 		}
 	}
 }

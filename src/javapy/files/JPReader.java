@@ -20,7 +20,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 import javapy.util.JPArrayUtils;
 
@@ -28,7 +30,7 @@ import javapy.util.JPArrayUtils;
  * Class for methods which relate to reading a file and providing an output, or information about what was read. There
  * should be no methods which actually CHANGE the file inside this class.
  */
-public class JPReader {
+@Deprecated public class JPReader {
 
 	FileReader reader;
 
@@ -43,13 +45,23 @@ public class JPReader {
 	}
 
 	/**
-	 * Constructs the readers based around a certain file path.
+	 * Constructs the readers based around a certain <code>String</code> path.
 	 *
 	 * @param path to the file to be read
 	 * @throws FileNotFoundException if the path's file cannot be found
 	 */
 	public JPReader(String path) throws FileNotFoundException {
 		this(new File(path));
+	}
+
+	/**
+	 * Constructs the readers based around a certain <code>Path</code> path.
+	 *
+	 * @param path to the file to be read
+	 * @throws FileNotFoundException if the path's file cannot be found
+	 */
+	public JPReader(Path path) throws FileNotFoundException {
+		this(path.toFile());
 	}
 
 	/**
@@ -61,9 +73,10 @@ public class JPReader {
 	 * @throws IOException if there is a problem in reading the file
 	 */
 	public String[] readToArray() throws IOException {
-		ArrayList<String> contents = new ArrayList<String>(0);
 
+		List<String> contents = new ArrayList<String>(0);
 		String line;
+
 		BufferedReader bufferedReader = new BufferedReader(reader);
 		while ((line = bufferedReader.readLine()) != null) {
 			contents.add(line);
@@ -103,6 +116,15 @@ public class JPReader {
 		return null;
 	}
 
+	public String[] readLines(File file, int fromLine, int toLine) throws IOException {
+		List<String> contents = new ArrayList<String>();
+		for (int i = fromLine; i < toLine; i++) {
+			contents.add(readLine(file, i));
+		}
+
+		return (String[]) JPArrayUtils.toArray(contents);
+	}
+
 	/**
 	 * <ul>
 	 * <li><b><i> searchFile </i></b></li>
@@ -121,8 +143,8 @@ public class JPReader {
 	 * @throws IOException if there is a problem reading the file
 	 */
 	public int[] searchFile(String keyword) throws IOException {
-		ArrayList<Integer> search = new ArrayList<Integer>();
 
+		ArrayList<Integer> search = new ArrayList<Integer>();
 		String[] contents = this.readToArray();
 
 		for (int i = 0; i < contents.length; i++) {
@@ -132,15 +154,8 @@ public class JPReader {
 			}
 		}
 
-		String[] strings = (String[]) search.toArray();
-
-		// Convert ArrayList to int[]
-		Integer[] locations = search.toArray(new Integer[search.size()]);
-		for (int x = 0; x < strings.length; x++) {
-			locations[x] = Integer.getInteger(strings[x]);
-		}
-
-		return JPArrayUtils.toPrimitiveArray(locations);
+		Integer[] integers = search.toArray(new Integer[search.size()]);
+		return JPArrayUtils.toPrimitiveArray(integers);
 	}
 
 	/**

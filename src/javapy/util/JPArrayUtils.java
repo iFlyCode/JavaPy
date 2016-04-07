@@ -15,7 +15,6 @@
 
 package javapy.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -25,6 +24,48 @@ import java.util.Collection;
  * @author ifly6
  */
 public class JPArrayUtils {
+
+	/**
+	 * This constructor is declared as private to prevent accidental creation of the class.
+	 */
+	private JPArrayUtils() {
+
+	}
+
+	/**
+	 * Creates an <code>int[]</code> containing the range determined by the inputs.
+	 *
+	 * @param startInt is the starting integer
+	 * @param stopInt is the ending integer
+	 * @return an <code>int[]</code> containing the range determined by the inputs
+	 */
+	public static int[] range(int startInt, int stopInt) {
+
+		if (startInt < stopInt) {
+
+			int[] range = new int[stopInt - startInt];
+
+			int init = startInt;
+			for (int i = 0; i < range.length; i++) {
+				range[i] = init;
+				init++;
+			}
+			return range;
+
+		} else {
+			throw new ArrayIndexOutOfBoundsException("Range from " + startInt + " to " + stopInt + " is invalid.");
+		}
+	}
+
+	/**
+	 * Creates an <code>int[]</code> containing the range 0 to the stopping integer.
+	 *
+	 * @param stopInt the ending integer
+	 * @return an <code>int[]</code> containing a range from 0 to the stopping integer
+	 */
+	public static int[] range(int stopInt) {
+		return range(0, stopInt);
+	}
 
 	/**
 	 * Converts a collection into an array.
@@ -135,14 +176,26 @@ public class JPArrayUtils {
 	 * @author ifly6
 	 */
 	public static String[] filterNewLines(String[] array) {
-		ArrayList<String> temp = new ArrayList<String>();
 
+		// Find the number of new lines in the original array
+		int newLines = 0;
 		for (String element : array) {
-			if (!element.equals("\n")) {
-				temp.add(element);
+			if (element.equals("\n")) {
+				newLines++;
 			}
 		}
 
-		return temp.toArray(new String[temp.size()]);
+		// Subtract that number and copy the array over, ignoring new lines
+		String[] output = new String[array.length - newLines];
+		int outputIndex = 0;
+
+		for (int arrayIndex = 0; arrayIndex < output.length; arrayIndex++) {
+			if (!array[arrayIndex].equals("\n")) {
+				output[outputIndex] = array[arrayIndex];
+				outputIndex++;
+			}
+		}
+
+		return output;
 	}
 }
