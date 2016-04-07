@@ -1,3 +1,18 @@
+/* Copyright (c) 2015 Kevin Wong and Nicholas Colaprete
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
+
 package javapy.files;
 
 import java.io.BufferedInputStream;
@@ -18,6 +33,13 @@ import java.util.Map;
 /**
  * Reads text from a file with allowance for reading all lines, reading a single line, reading an range of lines, and
  * reading those lines which are only applicable for a certain keyword.
+ *
+ * <p>
+ * This code is designed to use <code>File</code> but also allows in its constructor methods to accept <code>File</code>
+ * , <code>Path</code>, and <code>String</code>. It reads all lines utilising the new Java 8 function for reading all
+ * lines to a <code>List&lt;String&gt;</code>. However, for more complicated functions, it utilises
+ * <code>BufferedReader</code>, especially for line manipulations.
+ * </p>
  *
  * <p>
  * The code here is designed to minimise its use of memory and disc, so it does not actually read the entire thing into
@@ -53,7 +75,7 @@ public class JPFileReader {
 		this(new File(pathStr));
 	}
 
-	/* Actual functions */
+	/* Actual methods */
 	/**
 	 * Reads all lines from the file. This is a wrapper around <code>Files.readAllLines(Paths.get(file.toURI()))</code>.
 	 *

@@ -17,6 +17,13 @@ package javapy.maths;
 
 public class Number {
 
+	/**
+	 * This is a private constructor to prevent instantiation. All methods here ought be static.
+	 */
+	private Number() {
+		// Prevent instantiation
+	}
+
 	public static double decimalRound(double input, int places) {
 		return Math.round(input * Math.pow(10, places)) / Math.pow(10, places);
 	}

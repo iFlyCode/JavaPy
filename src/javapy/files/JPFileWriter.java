@@ -29,7 +29,7 @@ import javapy.util.JPArrayUtils;
 /**
  * The place for methods which involve a file, and involve the changing of the contents of that file.
  */
-public class JPWriter {
+public class JPFileWriter {
 
 	File file;
 	BufferedWriter writer;
@@ -40,7 +40,7 @@ public class JPWriter {
 	 * @param givenFile the relevant file
 	 * @throws IOException if there is a problem in constructing the BufferedWriter
 	 */
-	public JPWriter(File givenFile) throws IOException {
+	public JPFileWriter(File givenFile) throws IOException {
 		writer = new BufferedWriter(new FileWriter(file));
 		file = givenFile;
 	}
@@ -51,7 +51,7 @@ public class JPWriter {
 	 * @param givenFile the path to the relevant file
 	 * @throws IOException if there is a problem in constructing the BufferedWriter
 	 */
-	public JPWriter(String path) throws IOException {
+	public JPFileWriter(String path) throws IOException {
 		this(new File(path));
 	}
 

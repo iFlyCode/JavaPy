@@ -48,21 +48,13 @@ public class ProcessExecutor {
 		final ArrayList<String> total = new ArrayList<String>(0);
 
 		ProcessBuilder builder = new ProcessBuilder(execCommands);
+		builder.redirectErrorStream(true);
 		Process process = builder.start();
 
 		// Output Stream
 		InputStream outStream = process.getInputStream();
 		InputStreamReader outRead = new InputStreamReader(outStream);
 		Scanner scan = new Scanner(outRead);
-		while (scan.hasNextLine()) {
-			total.add(scan.nextLine());
-		}
-		scan.close();
-
-		// Error Stream
-		InputStream errStream = process.getErrorStream();
-		InputStreamReader errRead = new InputStreamReader(errStream);
-		scan = new Scanner(errRead);
 		while (scan.hasNextLine()) {
 			total.add(scan.nextLine());
 		}

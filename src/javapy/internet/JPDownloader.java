@@ -15,12 +15,16 @@
 
 package javapy.internet;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * These are methods which all pertain to getting a text return from a web page. There should be no unrelated methods
@@ -47,14 +51,38 @@ public class JPDownloader {
 	/**
 	 * Reads the contents of a file online. This will return the raw text form of the file, with no formatting.
 	 *
-	 * @author ifly6
-	 * @param website which should be read
+	 * @param website to read
 	 * @return <code>String</code> with contents of file
 	 * @throws IOException if an issue occurs with the download
 	 */
-	public String readNetPage(URL website) throws IOException {
-		ReadableByteChannel rbc = Channels.newChannel(website.openStream());
-		String contents = rbc.toString();
-		return contents;
+	public String readUrltoString(URL website) throws IOException {
+
+		StringBuilder builder = new StringBuilder();
+		for (String element : readUrlLines(website)) {
+			builder.append(element + "\n");
+		}
+
+		return builder.toString();
+	}
+
+	/**
+	 * Reads the contents of a file online. This will return the raw text form of the file, with no formatting.
+	 *
+	 * @param website to read
+	 * @return <code>List&lt;String&gt;</code> with contents of file
+	 * @throws IOException if an issue occurs with the download
+	 */
+	public List<String> readUrlLines(URL website) throws IOException {
+
+		List<String> dataList = new ArrayList<String>();
+		BufferedReader in = new BufferedReader(new InputStreamReader(website.openStream()));
+
+		String inputLine;
+		while ((inputLine = in.readLine()) != null) {
+			dataList.add(inputLine);
+		}
+		in.close();
+
+		return dataList;
 	}
 }

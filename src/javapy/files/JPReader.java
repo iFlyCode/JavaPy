@@ -29,6 +29,19 @@ import javapy.util.JPArrayUtils;
 /**
  * Class for methods which relate to reading a file and providing an output, or information about what was read. There
  * should be no methods which actually CHANGE the file inside this class.
+ *
+ * <p>
+ * <code>JPReader</code> was deprecated because it was simply easier to rewrite the entire JavaPy file reading system
+ * than fixing this old one. This was designed, initially, as a separated system providing <code>static</code> file
+ * manipulation methods. It, however, later took on a constructor and a specifically targeted <code>File</code>
+ * parameter. However, due to the fact that it was based on those old methods, it became very memory inefficient, as
+ * those methods presupposed that the file had not be loaded.
+ * </p>
+ *
+ * <p>
+ * The class <code>JPFileReader</code> solves the above problems by offering a concrete and efficient solution that
+ * deals with the structural issues in this class.
+ * </p>
  */
 @Deprecated public class JPReader {
 
