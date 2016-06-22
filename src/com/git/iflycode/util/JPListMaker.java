@@ -15,42 +15,50 @@
 package com.git.iflycode.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author ifly6
  * @param <E>
  *
  */
-public class JPList<E> extends ArrayList<E> {
+public class JPListMaker<E> {
 
-	private static final long serialVersionUID = -6479164123345341209L;
+	List<E> internalList;
+
+	public JPListMaker() {
+		this.internalList = new ArrayList<E>();
+	}
 
 	/**
-	 * @see java.util.ArrayList#add(java.lang.Object)
+	 * Implements the add method used in {@link java.util.List#remove List#remove} onto the internal list
+	 * 
+	 * @param e is the object to be added
+	 * @return the list, operated upon by its relevant <code>add</code> method
 	 */
-	public JPList<E> jpAdd(E e) {
-		// TODO Auto-generated method stub
-		super.add(e);
+	public JPListMaker<E> add(E e) {
+		internalList.add(e);
 		return this;
 	}
 
 	/**
-	 * @return <code>JPList</code> as an array
+	 * Implements the remove method used in {@link java.util.List#remove List#remove} onto the internal list
+	 * 
+	 * @param e is the object to be removed
+	 * @return the list, operated upon by its relevant <code>remove</code> method
 	 */
-	@SuppressWarnings("unchecked") public E[] jpToArray() {
-		return (E[]) this.toArray(new Object[this.size()]);
+	public JPListMaker<E> remove(E e) {
+		internalList.remove(e);
+		return this;
 	}
 
 	/**
-	 * @return <code>JPList</code> as a <code>Set</code>, though, more specifically, as <code>HashSet</code>
+	 * Creates the list and finalises that list.
+	 * 
+	 * @return
 	 */
-	public Set<E> jpToSet() {
-
-		HashSet<E> inits = new HashSet<E>();
-		inits.addAll(this);
-
-		return inits;
+	public List<E> create() {
+		return internalList;
 	}
+
 }
