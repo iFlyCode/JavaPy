@@ -16,33 +16,42 @@
 package com.git.iflycode.util;
 
 public class FinalBoolean {
-
+	
 	boolean setting = false;
 	boolean finalised = false;
-
-	public FinalBoolean(boolean defaultSetting) {
-		setting = defaultSetting;
+	
+	/** Constructs the <code>FinalBoolean</code> object with a predetermined setting. Also automatically finalises.
+	 * @param finalSetting should be self-evident */
+	public FinalBoolean(boolean finalSetting) {
+		setting = finalSetting;
 		finalise();
 	}
-
-	/**
-	 * This method sets the boolean if it has not already been set.
-	 *
-	 * @param newSetting - sets the boolean and finalises it
-	 */
+	
+	/** This method sets the boolean if it has not already been set.
+	 * @param newSetting - sets the boolean and finalises it */
 	public void set(boolean newSetting) {
 		if (!finalised) {
 			setting = newSetting;
 			finalise();
 		}
 	}
-
+	
+	/** If it has not yet been finalised, this method finalises the setting. It is called by the internal components of
+	 * the class. */
 	private void finalise() {
 		this.finalised = true;
 	}
 
+	/** Checks whether the <code>FinalBoolean</code> is finalised or not.
+	 * @return whether it is finalised */
+	public boolean isFinalised() {
+		return finalised;
+	}
+	
+	/** Determines the value of the final boolean.
+	 * @return the value of the encapsulated boolean */
 	public boolean getValue() {
 		return this.setting;
 	}
-
+	
 }

@@ -15,38 +15,27 @@
 
 package com.git.iflycode.maths;
 
-/**
- * Functions with special reference to sequences are in this class. All elements of the class are static as this class
+/** Functions with special reference to sequences are in this class. All elements of the class are static as this class
  * should not be 'constructed'.
  *
  * @author ifly6
- * @author ncolaprete
- */
+ * @author ncolaprete */
 public class Sequences {
 	// TODO Regression
-
-	/**
-	 * Calculates the total of a converging geometric sequence.
-	 *
+	
+	/** Calculates the total of a converging geometric sequence.
 	 * @author ifly6
 	 * @param r the common ratio
 	 * @param initial value at f(0)
-	 * @return the value to which the equation converges.
-	 */
+	 * @return the value to which the equation converges. */
 	public static double converingSequence(double r, double initial) {
-		double fraction = 1 / (1 - r);
-		double returned = initial * fraction;
-		return returned;
+		return initial * (1 / (1 - r));
 	}
-
-	/**
-	 * Calculates the <i>n</i>th number in the Fibonacci sequence.
-	 *
+	
+	/** Calculates the <i>n</i>th number in the Fibonacci sequence.
 	 * @author ncolaprete
-	 *
 	 * @param n <i>th</i> number of the sequence
-	 * @return n'th number in the sequence
-	 */
+	 * @return n'th number in the sequence */
 	public static int fibonacci(int n) {
 		if (n == 1) {
 			return 1;
@@ -56,9 +45,9 @@ public class Sequences {
 			return fibonacci(n - 1) + fibonacci(n - 2);
 		}
 	}
-
-	/**
-	 * Takes an imaginary number, and returns whether or not it is bounded under 2 after a certain number of iterations,
+	
+	/** Takes an imaginary number, and returns whether or not it is bounded under 2 after a certain number of
+	 * iterations,
 	 * by the equation Z = Z^2 + C.
 	 *
 	 * <p>
@@ -75,21 +64,20 @@ public class Sequences {
 	 * @param iters number of iterations to check if the number is bounded
 	 *
 	 * @return number of iterations before the number became unbounded, - or returns the number of iterations given if
-	 *         is bounded
-	 */
+	 *         is bounded */
 	public static int mandelbrot(double real, double imag, double cReal, double cImag, int iters) {
-		int to_sender = 0;
+		int toSender = 0;
 		for (int i = 0; i < iters; i++) {
 			double backReal = real;
 			double backImag = imag;
-			real = ((backReal * backReal) - (backImag * backImag)) + cReal;
-			imag = (2 * backImag * backReal) + cImag;
-			if ((real * real) + (imag * imag) > 4) {
+			real = backReal * backReal - backImag * backImag + cReal;
+			imag = 2 * backImag * backReal + cImag;
+			if (real * real + imag * imag > 4) {
 				break;
 			}
-			to_sender = i + 1;
+			toSender = i + 1;
 		}
-		return to_sender;
+		return toSender;
 	}
-
+	
 }

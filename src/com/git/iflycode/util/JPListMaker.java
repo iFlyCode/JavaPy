@@ -15,6 +15,8 @@
 package com.git.iflycode.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -30,9 +32,18 @@ public class JPListMaker<E> {
 		this.internalList = new ArrayList<E>();
 	}
 
+	public int size() {
+		return internalList.size();
+	}
+
+	public boolean isEmpty() {
+		if (size() == 0) { return true; }
+		return false;
+	}
+
 	/**
-	 * Implements the add method used in {@link java.util.List#remove List#remove} onto the internal list
-	 * 
+	 * Implements the add method used in {@link java.util.List#add List#add} onto the internal list.
+	 *
 	 * @param e is the object to be added
 	 * @return the list, operated upon by its relevant <code>add</code> method
 	 */
@@ -41,9 +52,14 @@ public class JPListMaker<E> {
 		return this;
 	}
 
+	public JPListMaker<E> addAll(Collection<E> e) {
+		internalList.addAll(e);
+		return this;
+	}
+
 	/**
-	 * Implements the remove method used in {@link java.util.List#remove List#remove} onto the internal list
-	 * 
+	 * Implements the remove method used in {@link java.util.List#remove List#remove} onto the internal list.
+	 *
 	 * @param e is the object to be removed
 	 * @return the list, operated upon by its relevant <code>remove</code> method
 	 */
@@ -52,9 +68,13 @@ public class JPListMaker<E> {
 		return this;
 	}
 
+	public Iterator<E> iterator() {
+		return internalList.iterator();
+	}
+
 	/**
 	 * Creates the list and finalises that list.
-	 * 
+	 *
 	 * @return
 	 */
 	public List<E> create() {

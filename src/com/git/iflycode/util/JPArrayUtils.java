@@ -15,187 +15,109 @@
 
 package com.git.iflycode.util;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-/**
- * This class contains static methods which are used to manipulate arrays in a more helpful manner than provided by the
+/** This class contains static methods which are used to manipulate arrays in a more helpful manner than provided by the
  * Java library. Everything here is static, since there is no object to be created by <code>JPArrayUtils</code>.
  *
- * @author ifly6
- */
+ * @author ifly6 */
 public class JPArrayUtils {
-
-	/**
-	 * This constructor is declared as private to prevent accidental creation of the class.
-	 */
+	
+	/** This constructor is declared as private to prevent accidental creation of the class. */
 	private JPArrayUtils() {
-
+		
 	}
-
-	/**
-	 * Creates an <code>int[]</code> containing the range determined by the inputs.
-	 *
+	
+	/** Creates an <code>int[]</code> containing the range determined by the inputs.
 	 * @param startInt is the starting integer
 	 * @param stopInt is the ending integer
-	 * @return an <code>int[]</code> containing the range determined by the inputs
-	 */
+	 * @return an <code>int[]</code> containing the range determined by the inputs */
 	public static int[] range(int startInt, int stopInt) {
-
-		if (startInt < stopInt) {
-
-			int[] range = new int[stopInt - startInt];
-
-			int init = startInt;
-			for (int i = 0; i < range.length; i++) {
-				range[i] = init;
-				init++;
-			}
-			return range;
-
-		} else {
-			throw new ArrayIndexOutOfBoundsException("Range from " + startInt + " to " + stopInt + " is invalid.");
-		}
+		return IntStream.range(startInt, stopInt).toArray();
 	}
-
-	/**
-	 * Creates an <code>int[]</code> containing the range 0 to the stopping integer.
+	
+	/** Creates an <code>int[]</code> containing the range 0 to the stopping integer.
 	 *
 	 * @param stopInt the ending integer
-	 * @return an <code>int[]</code> containing a range from 0 to the stopping integer
-	 */
+	 * @return an <code>int[]</code> containing a range from 0 to the stopping integer */
 	public static int[] range(int stopInt) {
 		return range(0, stopInt);
 	}
-
-	/**
-	 * Converts a collection into an array.
+	
+	/** Converts a collection into an array.
 	 *
 	 * @param collection to be converted into an array
 	 * @author ifly6
-	 * @return the collection as an array
-	 */
+	 * @return the collection as an array */
 	public static Object[] toArray(Collection<?> collection) {
 		return collection.toArray(new String[collection.size()]);
 	}
-
-	/**
-	 * Converts an <code>Integer[]</code> into an <code>int[]</code>.
-	 *
-	 * @param objectArray the non-primitive array of Integer objects
+	
+	/** Converts an <code>Integer[]</code> into an <code>int[]</code>.
 	 * @author ifly6
-	 * @return an <code>int[]</code> from the <code>Integer[]</code>
-	 */
+	 * @param objectArray as <code>Integer[]</code>
+	 * @return an <code>int[]</code> from the <code>Integer[]</code> */
 	public static int[] toPrimitiveArray(Integer[] objectArray) {
-		int[] primitiveArray = new int[objectArray.length];
-
-		for (int i = 0; i < objectArray.length; i++) {
-			primitiveArray[i] = objectArray[i];
-		}
-
-		return primitiveArray;
+		return Stream.of(objectArray).mapToInt(Integer::intValue).toArray();
 	}
-
-	/**
-	 * Converts an <code>Double[]</code> into an <code>double[]</code>.
-	 *
+	
+	/** Converts an <code>Double[]</code> into an <code>double[]</code>.
 	 * @param objectArray the non-primitive array of Integer objects
 	 * @author ifly6
-	 * @return an <code>int[]</code> from the <code>Integer[]</code>
-	 */
+	 * @return an <code>int[]</code> from the <code>Integer[]</code> */
 	public static double[] toPrimitiveArray(Double[] objectArray) {
-		double[] primitiveArray = new double[objectArray.length];
-
-		for (int i = 0; i < objectArray.length; i++) {
-			primitiveArray[i] = objectArray[i];
-		}
-
-		return primitiveArray;
+		return Stream.of(objectArray).mapToDouble(Double::doubleValue).toArray();
 	}
-
-	/**
-	 * Converts a collection of <code>String</code> into a single <code>String</code> with character separator.
+	
+	/** Converts a collection of <code>String</code> into a single <code>String</code> with character separator.
 	 *
 	 * @param collection to be converted
 	 * @param sepChar to separate each <code>String</code>
 	 * @author ifly6
-	 * @return
-	 */
+	 * @return */
 	public static String toString(Collection<String> collection, char sepChar) {
 		StringBuilder sBuilder = new StringBuilder();
-		for (String element : collection) {
-			sBuilder.append(element + sepChar);
-		}
+		collection.stream().forEach(s -> sBuilder.append(s + sepChar));
 		return sBuilder.toString();
 	}
-
-	/**
-	 * Converts a collection of <code>String</code> into a single <code>String</code> defaulting to <code>','</code> as
+	
+	/** Converts a collection of <code>String</code> into a single <code>String</code> defaulting to <code>','</code> as
 	 * the separator.
-	 *
 	 * @param collection to be converted
 	 * @author ifly6
-	 * @return a String with commas between each element
-	 */
+	 * @return a String with commas between each element */
 	public static String toString(Collection<String> collection) {
 		return toString(collection, ',');
 	}
-
-	/**
-	 * Converts a <code>String[]</code> into a single <code>String</code> with character separator.
-	 *
+	
+	/** Converts a <code>String[]</code> into a single <code>String</code> with character separator.
 	 * @param array to be converted
 	 * @param sepChar to be placed between each element
 	 * @author ifly6
-	 * @return a String with <code>sepChar</code> between each element
-	 */
+	 * @return a <code>String</code> with <code>sepChar</code> between each element */
 	public static String toString(String[] array, char sepChar) {
 		StringBuilder sBuilder = new StringBuilder();
-		for (String element : array) {
-			sBuilder.append(element + sepChar);
-		}
+		Arrays.stream(array).forEach(s -> sBuilder.append(s + sepChar));
 		return sBuilder.toString();
 	}
-
-	/**
-	 * Converts a <code>String[]</code> into a single <code>String</code> defaulting to <code>','</code> as the
+	
+	/** Converts a <code>String[]</code> into a single <code>String</code> defaulting to <code>','</code> as the
 	 * separator.
-	 *
 	 * @param array to be converted
 	 * @author ifly6
-	 * @return a String with commas between each element
-	 */
+	 * @return a String with commas between each element */
 	public static String toString(String[] array) {
 		return toString(array, ',');
 	}
-
-	/**
-	 * This filters out all new lines from an array.
-	 *
-	 * @param array which contains unwanted new lines
-	 * @return the array without unwanted new lines
-	 * @author ifly6
-	 */
-	public static String[] filterNewLines(String[] array) {
-
-		// Find the number of new lines in the original array
-		int newLines = 0;
-		for (String element : array) {
-			if (element.equals("\n")) {
-				newLines++;
-			}
-		}
-
-		// Subtract that number and copy the array over, ignoring new lines
-		String[] output = new String[array.length - newLines];
-		int outputIndex = 0;
-
-		for (int arrayIndex = 0; arrayIndex < output.length; arrayIndex++) {
-			if (!array[arrayIndex].equals("\n")) {
-				output[outputIndex] = array[arrayIndex];
-				outputIndex++;
-			}
-		}
-
-		return output;
+	
+	/** Filters out all empty lines from an array.
+	 * @param array which contains unwanted empty lines
+	 * @return the array without unwanted empty lines
+	 * @author ifly6 */
+	public static String[] filterEmptyLines(String[] array) {
+		return Arrays.stream(array).filter(s -> s.trim().length() != 0).toArray(String[]::new);
 	}
 }
