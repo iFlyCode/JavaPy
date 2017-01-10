@@ -6,3 +6,8 @@
 *.war
 *.ear
 /bin/
+
+# Eclipse-specific files # 
+.classpath
+.project
+.settings
